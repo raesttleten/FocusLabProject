@@ -1,0 +1,82 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function myProfilePath() {
+      return /databases/$(database)/documents/usuarios/$(request.auth.uid);
+    }
+
+    function myProfile() {
+      return get(myProfilePath()).data;
+    }
+
+    function isTeacher() {
+      return signedIn() && exists(myProfilePath()) && myProfile().rol == 'docente';
+    }
+
+    function isResearcher() {
+      return signedIn()
+        && request.auth.token.email != null
+        && exists(/databases/$(database)/documents/investigadoras_autorizadas/$(request.auth.token.email))
+        && get(/databases/$(database)/documents/investigadoras_autorizadas/$(request.auth.token.email)).data.activa == true;
+    }
+
+    function isStudentOfMyGroup(studentUid) {
+      return isTeacher()
+        && get(/databases/$(database)/documents/usuarios/$(studentUid)).data.rol == 'estudiante'
+        && get(/databases/$(database)/documents/usuarios/$(studentUid)).data.grupoId == myProfile().grupoId;
+    }
+
+    match /usuarios/{uid} {
+      allow read: if signedIn() && (
+        request.auth.uid == uid
+        || (isTeacher() && resource.data.rol == 'estudiante' && resource.data.grupoId == myProfile().grupoId)
+        || isResearcher()
+      );
+
+      allow update: if signedIn()
+        && request.auth.uid == uid
+        && resource.data.rol == 'estudiante'
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['tema'])
+        && request.resource.data.tema in ['lila', 'verde', 'rosa', 'azul'];
+
+      allow create: if isTeacher()
+        && request.resource.data.keys().hasOnly(['rol', 'codigo', 'grupoId', 'tema'])
+        && request.resource.data.rol == 'estudiante'
+        && request.resource.data.codigo is string
+        && request.resource.data.grupoId == myProfile().grupoId
+        && request.resource.data.tema == null;
+
+      allow delete: if false;
+    }
+
+    match /investigadoras_autorizadas/{email} {
+      allow get: if signedIn() && request.auth.token.email == email;
+      allow list, write: if false;
+    }
+
+    match /sesiones/{sesionId} {
+      allow read: if signedIn() && (
+        resource.data.estudianteUid == request.auth.uid
+        || isStudentOfMyGroup(resource.data.estudianteUid)
+        || isResearcher()
+      );
+      allow create: if signedIn()
+        && exists(myProfilePath())
+        && myProfile().rol == 'estudiante'
+        && request.resource.data.estudianteUid == request.auth.uid;
+      allow update: if signedIn()
+        && resource.data.estudianteUid == request.auth.uid
+        && request.resource.data.estudianteUid == request.auth.uid;
+      allow delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
