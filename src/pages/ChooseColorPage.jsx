@@ -3,23 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../app/routes.js';
 import { useAuth } from '../auth/AuthProvider.jsx';
 import logo from '../assets/logo_focuslap.png';
+import CheckIcon from '../components/CheckIcon.jsx';
 import { colorFromTheme, DEFAULT_THEME, themeFromColor, THEMES } from '../theme/themes.js';
 import './ChooseColorPage.css';
-
-function CheckIcon() {
-  return (
-    <svg className="color-option__check" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="12" fill="currentColor" />
-      <path
-        d="M6.66667 12.2667L10.1333 15.7333L17.3333 8.66667"
-        stroke="white"
-        strokeWidth="2.66667"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 function ThemePreview() {
   return (
@@ -69,7 +55,7 @@ export default function ChooseColorPage() {
               <span className="color-option__card">
                 <ThemePreview />
                 <span className="color-option__label">{label}</span>
-                {selected === id && <CheckIcon />}
+                {selected === id && <CheckIcon className="color-option__check" />}
               </span>
             </label>
           ))}

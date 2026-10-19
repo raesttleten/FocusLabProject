@@ -1,0 +1,248 @@
+.personalizar {
+  width: min(640px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  padding: 0;
+  border: 0;
+  border-radius: 28px;
+  background: var(--color-surface);
+  box-shadow: 0 16px 20px rgba(26, 26, 26, 0.18);
+  color: var(--color-text);
+}
+
+.personalizar::backdrop {
+  background: rgba(34, 30, 51, 0.35);
+}
+
+.personalizar__contenido {
+  padding: 30px 40px 30px;
+}
+
+.personalizar__encabezado {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.personalizar__titulo {
+  margin: 3px 0 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.personalizar__descripcion {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.personalizar__cerrar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  background: var(--color-primary-soft);
+  cursor: pointer;
+}
+
+.personalizar__cerrar img {
+  display: block;
+}
+
+.personalizar__cuerpo {
+  display: grid;
+  grid-template-columns: 224px minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 21px;
+}
+
+.personalizar__vista {
+  display: grid;
+  place-items: center;
+  height: 300px;
+  padding: 12px 7px 38px;
+  border-radius: 20px;
+  background: var(--color-primary-soft);
+}
+
+.personalizar__mascota {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.personalizar__etiqueta {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.personalizar__nombre {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 50px;
+  margin-top: 7px;
+  padding: 0 14px 0 16px;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border-input);
+  border-radius: 14px;
+}
+
+.personalizar__nombre:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.personalizar__nombre--error,
+.personalizar__nombre--error:focus-within {
+  border-color: var(--color-error);
+}
+
+.personalizar__nombre input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.personalizar__nombre img {
+  display: block;
+  flex: none;
+}
+
+.personalizar__ayuda {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  color: var(--color-text-subtle);
+}
+
+.personalizar__ayuda--error {
+  color: var(--color-error-text);
+}
+
+.personalizar__ropa {
+  margin: 20px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.personalizar__prendas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 16px;
+  margin-top: 10px;
+}
+
+.prenda-opcion {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+.prenda-opcion__input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.prenda-opcion__tarjeta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 96px;
+  padding: 4px 12px 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+}
+
+.prenda-opcion__input:checked + .prenda-opcion__tarjeta {
+  padding: 3px 11px 0;
+  background: var(--color-primary-selected);
+  border: 2px solid var(--color-primary);
+}
+
+.prenda-opcion__input:focus-visible + .prenda-opcion__tarjeta {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.prenda-opcion:hover .prenda-opcion__input:not(:checked) + .prenda-opcion__tarjeta {
+  border-color: var(--color-primary);
+}
+
+.prenda-opcion__imagen {
+  display: block;
+  width: 100%;
+  height: 62px;
+  object-fit: contain;
+}
+
+.prenda-opcion__nombre {
+  margin-top: 4px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.prenda-opcion__check {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  display: block;
+  color: var(--color-primary);
+}
+
+.personalizar__acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.personalizar__boton {
+  width: 108px;
+  height: 48px;
+  padding: 0;
+  border-radius: 14px;
+  font-size: 15px;
+}
+
+.personalizar__cerrar:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .personalizar__contenido {
+    padding: 24px 20px;
+  }
+
+  .personalizar__cuerpo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .personalizar__vista {
+    height: 220px;
+  }
+}
