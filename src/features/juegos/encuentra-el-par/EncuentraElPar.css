@@ -1,0 +1,94 @@
+.eep-forma {
+  display: block;
+  color: var(--color-primary);
+}
+
+.eep-vista {
+  display: grid;
+  grid-template-columns: repeat(4, 40px);
+  gap: 12px 10px;
+}
+
+.eep-juego {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px 120px;
+}
+
+.eep-tablero {
+  display: grid;
+  grid-template-columns: repeat(4, 96px);
+  gap: 16px;
+}
+
+.eep-celda {
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  background: var(--color-surface);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.eep-celda:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.eep-celda--seleccionada {
+  border: 2.5px solid var(--color-primary);
+}
+
+.eep-celda--acierto {
+  border: 2.5px solid var(--color-success);
+  background: var(--color-success-bg);
+}
+
+.eep-celda--error {
+  border: 2.5px solid var(--color-error);
+  background: var(--color-error-bg);
+}
+
+.eep-celda--revelada {
+  border: 2.5px solid var(--color-primary);
+  background: var(--color-primary-selected);
+}
+
+.eep-ayuda {
+  min-height: 21px;
+  margin: 50px 0 0;
+  font-size: 17px;
+  color: var(--color-text-muted);
+}
+
+.eep-ayuda--acierto {
+  font-weight: 500;
+  color: #3e8a5a;
+}
+
+.eep-ayuda--error,
+.eep-ayuda--fallida {
+  font-weight: 500;
+  color: #b0566a;
+}
+
+@media (max-width: 700px) {
+  .eep-tablero {
+    grid-template-columns: repeat(4, 72px);
+    gap: 10px;
+  }
+
+  .eep-celda {
+    width: 72px;
+    height: 72px;
+  }
+}

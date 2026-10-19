@@ -7,6 +7,7 @@ import { ahora } from '../progreso/reloj.js';
 import * as aTodoFoco from './a-todo-foco/ATodoFoco.jsx';
 import * as repiteElPatron from './repite-el-patron/RepiteElPatron.jsx';
 import * as sigueElPunto from './sigue-el-punto/SigueElPunto.jsx';
+import * as encuentraElPar from './encuentra-el-par/EncuentraElPar.jsx';
 import { estaDesbloqueado, getJuego } from './catalogo.js';
 import { Instrucciones, MarcoJuego, Resultados } from './MarcoJuego.jsx';
 
@@ -14,6 +15,7 @@ const MODULOS = {
   'a-todo-foco': aTodoFoco,
   'repite-el-patron': repiteElPatron,
   'sigue-el-punto': sigueElPunto,
+  'encuentra-el-par': encuentraElPar,
 };
 
 const FASE = {
