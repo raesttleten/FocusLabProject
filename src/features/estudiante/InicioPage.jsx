@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES, routeTo } from '../../app/routes.js';
 import candado from '../../assets/estudiante/candado.svg';
 import { PORTADAS } from '../contenido/portadas.js';
 import Mascota from '../mascota/Mascota.jsx';
+import PersonalizarMascota from '../mascota/PersonalizarMascota.jsx';
 import { estadoMascota, PANTALLA } from '../mascota/estado.js';
 import { useProgreso } from '../progreso/ProgresoProvider.jsx';
 import EstudianteLayout from './EstudianteLayout.jsx';
@@ -75,6 +77,7 @@ function FilaJuego({ juego }) {
 
 export default function InicioPage() {
   const progreso = useProgreso();
+  const [personalizando, setPersonalizando] = useState(false);
 
   if (progreso.cargando || progreso.error) {
     return (
@@ -119,9 +122,15 @@ export default function InicioPage() {
           <section className="student-card inicio-mascota" aria-label="Tu mascota">
             <Mascota estado={estado} tamano={240} />
             <p className="inicio-mascota__mensaje">{mensajeMascota(estado, vista.estado, vista.dia)}</p>
-            <button type="button" className="student-button student-button--secondary inicio-mascota__boton">
+            <button
+              type="button"
+              className="student-button student-button--secondary inicio-mascota__boton"
+              aria-haspopup="dialog"
+              onClick={() => setPersonalizando(true)}
+            >
               Personalizar mascota
             </button>
+            <PersonalizarMascota abierto={personalizando} onCerrar={() => setPersonalizando(false)} />
           </section>
 
           <section className="student-card inicio-juegos" aria-labelledby="inicio-juegos-titulo">
