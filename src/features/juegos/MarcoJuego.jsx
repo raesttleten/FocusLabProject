@@ -4,10 +4,15 @@ import estrella from '../../assets/juegos/estrella-resultado.svg';
 import EstudianteLayout from '../estudiante/EstudianteLayout.jsx';
 import './Juegos.css';
 
-export function MarcoJuego({ juego, terminado = false, children }) {
+export function MarcoJuego({ juego, terminado = false, estado = null, children }) {
   const acciones = (
     <>
       {terminado && <span className="juego-marco__terminado">Terminado</span>}
+      {!terminado && estado && (
+        <span className="juego-marco__terminado" aria-live="polite">
+          {estado}
+        </span>
+      )}
       <Link className="student-button student-button--secondary juego-marco__salir" to={ROUTES.games}>
         Salir del juego
       </Link>

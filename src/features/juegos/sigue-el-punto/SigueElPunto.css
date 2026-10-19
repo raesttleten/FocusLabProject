@@ -1,0 +1,67 @@
+.sep-juego {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 57px 72px 72px;
+}
+
+.sep-centro {
+  min-height: 22px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.sep-centro--acierto {
+  color: #3e8a5a;
+}
+
+.sep-centro--error {
+  color: #b0566a;
+}
+
+.sep-arena {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.sep-punto {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #b9b2ce;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sep-punto[aria-disabled='true'] {
+  cursor: default;
+}
+
+.sep-punto:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.sep-punto--marcado {
+  background: var(--color-primary);
+}
+
+.sep-punto--acierto {
+  background: var(--color-success);
+  box-shadow: 0 0 0 4px var(--color-success-bg);
+}
+
+.sep-punto--error {
+  background: var(--color-error);
+  box-shadow: 0 0 0 4px var(--color-error-bg);
+}

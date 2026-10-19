@@ -6,12 +6,14 @@ import { registrarPartida } from '../progreso/repositorio.js';
 import { ahora } from '../progreso/reloj.js';
 import * as aTodoFoco from './a-todo-foco/ATodoFoco.jsx';
 import * as repiteElPatron from './repite-el-patron/RepiteElPatron.jsx';
+import * as sigueElPunto from './sigue-el-punto/SigueElPunto.jsx';
 import { estaDesbloqueado, getJuego } from './catalogo.js';
 import { Instrucciones, MarcoJuego, Resultados } from './MarcoJuego.jsx';
 
 const MODULOS = {
   'a-todo-foco': aTodoFoco,
   'repite-el-patron': repiteElPatron,
+  'sigue-el-punto': sigueElPunto,
 };
 
 const FASE = {
@@ -25,10 +27,12 @@ function Partida({ juego, modulo, uid }) {
   const [ronda, setRonda] = useState(0);
   const [inicio, setInicio] = useState(null);
   const [metricas, setMetricas] = useState(null);
+  const [encabezado, setEncabezado] = useState(null);
 
   function empezar() {
     setInicio({ fecha: ahora(), ms: performance.now() });
     setRonda((n) => n + 1);
+    setEncabezado(null);
     setFase(FASE.playing);
   }
 
@@ -45,9 +49,9 @@ function Partida({ juego, modulo, uid }) {
 
   const { Jugando } = modulo;
   return (
-    <MarcoJuego juego={juego} terminado={fase === FASE.results}>
+    <MarcoJuego juego={juego} terminado={fase === FASE.results} estado={fase === FASE.playing ? encabezado : null}>
       {fase === FASE.instructions && <Instrucciones {...modulo.instrucciones} onEmpezar={empezar} />}
-      {fase === FASE.playing && <Jugando key={ronda} onTerminar={terminar} />}
+      {fase === FASE.playing && <Jugando key={ronda} onTerminar={terminar} onEncabezado={setEncabezado} />}
       {fase === FASE.results && <Resultados {...modulo.resultados(metricas)} onOtraVez={empezar} />}
     </MarcoJuego>
   );
