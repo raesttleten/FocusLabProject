@@ -1,0 +1,124 @@
+.atf-fichas {
+  display: flex;
+  gap: 8px;
+}
+
+.atf-ficha {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-surface);
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--color-text-subtle);
+}
+
+.atf-ficha--x {
+  border: 2.5px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.atf-juego {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px 90px;
+}
+
+.atf-contador {
+  position: absolute;
+  top: 34px;
+  right: 40px;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.atf-recuadro {
+  display: grid;
+  place-items: center;
+  width: 220px;
+  height: 220px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 32px;
+  background: var(--color-surface);
+  font-family: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.atf-recuadro:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+.atf-letra {
+  font-size: 120px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--color-text);
+}
+
+.atf-recuadro--acierto {
+  border: 3px solid #3f8c68;
+  background: #e4f2ea;
+}
+
+.atf-recuadro--acierto .atf-letra {
+  color: #3f8c68;
+}
+
+.atf-recuadro--error {
+  border: 3px solid #b5523f;
+  background: #f8e6e1;
+}
+
+.atf-recuadro--error .atf-letra {
+  color: #b5523f;
+}
+
+.atf-ayuda {
+  min-height: 22px;
+  margin: 49px 0 0;
+  font-size: 18px;
+  color: var(--color-text-muted);
+}
+
+.atf-ayuda--acierto {
+  font-weight: 500;
+  color: #3f8c68;
+}
+
+.atf-ayuda--error {
+  font-weight: 500;
+  color: #b5523f;
+}
+
+.atf-progreso {
+  position: absolute;
+  bottom: 90px;
+  left: 50%;
+  width: min(620px, calc(100% - 48px));
+  height: 6px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #e2dcee;
+  transform: translateX(-50%);
+}
+
+.atf-progreso span {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--color-primary);
+}

@@ -131,6 +131,17 @@
   color: var(--color-text-muted);
 }
 
+.student-header__tag {
+  display: inline-block;
+  margin: 6px 0 0 2px;
+  padding: 5px 12px;
+  border-radius: 13px;
+  background: var(--color-primary-soft);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
 .student-header__aside {
   display: flex;
   align-items: center;

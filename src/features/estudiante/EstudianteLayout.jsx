@@ -61,7 +61,7 @@ function Ajustes() {
   );
 }
 
-export default function EstudianteLayout({ titulo, subtitulo, children }) {
+export default function EstudianteLayout({ titulo, subtitulo, etiqueta, acciones, sinAvatar = false, children }) {
   const { profile } = useAuth();
   const progreso = useProgreso();
   const { pathname } = useLocation();
@@ -88,15 +88,19 @@ export default function EstudianteLayout({ titulo, subtitulo, children }) {
         <div>
           <h1 className="student-header__title">{titulo}</h1>
           {subtitulo && <p className="student-header__subtitle">{subtitulo}</p>}
+          {etiqueta && <span className="student-header__tag">{etiqueta}</span>}
         </div>
         <div className="student-header__aside">
+          {acciones}
           <div className="student-points" aria-label={`${progreso.puntosTotales ?? 0} puntos`}>
             <img src={estrella} alt="" width="22" height="22" />
             <span>{progreso.puntosTotales ?? 0}</span>
           </div>
-          <div className="student-avatar" aria-hidden="true">
-            {inicial}
-          </div>
+          {!sinAvatar && (
+            <div className="student-avatar" aria-hidden="true">
+              {inicial}
+            </div>
+          )}
         </div>
       </header>
 

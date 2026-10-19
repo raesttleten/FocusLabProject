@@ -10,7 +10,8 @@ import PreguntasPage from '../features/preguntas/PreguntasPage.jsx';
 import LogradoPage from '../features/preguntas/LogradoPage.jsx';
 import LoginPage from '../pages/LoginPage.jsx';
 import ChooseColorPage from '../pages/ChooseColorPage.jsx';
-import GamesPage from '../pages/GamesPage.jsx';
+import JuegosPage from '../features/juegos/JuegosPage.jsx';
+import JuegoPage from '../features/juegos/JuegoPage.jsx';
 import TeacherDashboardPage from '../pages/TeacherDashboardPage.jsx';
 import ResearcherDashboardPage from '../pages/ResearcherDashboardPage.jsx';
 
@@ -40,8 +41,8 @@ export default function AppRoutes() {
         <Route path={ROUTES.reading} element={<LecturaPage />} />
         <Route path={ROUTES.questions} element={<PreguntasPage />} />
         <Route path={ROUTES.storyDone} element={<LogradoPage />} />
-        <Route path={ROUTES.games} element={<GamesPage />} />
-        <Route path={ROUTES.game} element={<GamesPage />} />
+        <Route path={ROUTES.games} element={<JuegosPage />} />
+        <Route path={ROUTES.game} element={<JuegoPage />} />
       </Route>
       <Route path={ROUTES.teacherDashboard} element={only(ROLES.teacher, <TeacherDashboardPage />)} />
       <Route
