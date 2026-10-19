@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { onAuthStateChanged, signOut as firebaseSignOut } from 'firebase/auth';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../services/firebase.js';
@@ -77,11 +77,21 @@ export function AuthProvider({ children }) {
 
   const saveColor = useCallback((color) => updateProfile({ color }), [updateProfile]);
 
-  const signOut = useCallback(() => firebaseSignOut(auth), []);
+  const antesDeSalir = useRef(new Set());
+
+  const alCerrarSesion = useCallback((accion) => {
+    antesDeSalir.current.add(accion);
+    return () => antesDeSalir.current.delete(accion);
+  }, []);
+
+  const signOut = useCallback(() => {
+    antesDeSalir.current.forEach((accion) => accion());
+    return firebaseSignOut(auth);
+  }, []);
 
   const value = useMemo(
-    () => ({ ...state, updateProfile, saveColor, signOut }),
-    [state, updateProfile, saveColor, signOut],
+    () => ({ ...state, updateProfile, saveColor, signOut, alCerrarSesion }),
+    [state, updateProfile, saveColor, signOut, alCerrarSesion],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

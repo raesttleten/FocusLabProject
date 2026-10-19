@@ -62,3 +62,11 @@ export function registrarLectura(uid, lectura) {
 export function registrarPartida(uid, partida) {
   enSegundoPlano(addDoc(collection(db, 'progreso', uid, 'juegos'), partida), 'la partida');
 }
+
+export function nuevoTramoId() {
+  return doc(collection(db, 'progreso', 'x', 'actividad')).id;
+}
+
+export function guardarActividad(uid, tramoId, tramo) {
+  enSegundoPlano(setDoc(doc(db, 'progreso', uid, 'actividad', tramoId), tramo), 'el tiempo activo');
+}

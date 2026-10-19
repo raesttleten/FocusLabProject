@@ -4,6 +4,7 @@ import RequireRole from '../auth/RequireRole.jsx';
 import { useAuth } from '../auth/AuthProvider.jsx';
 import { ROLES } from '../auth/roles.js';
 import { ProgresoProvider } from '../features/progreso/ProgresoProvider.jsx';
+import { useRegistroActividad } from '../features/progreso/useRegistroActividad.js';
 import InicioPage from '../features/estudiante/InicioPage.jsx';
 import LecturaPage from '../features/lectura/LecturaPage.jsx';
 import PreguntasPage from '../features/preguntas/PreguntasPage.jsx';
@@ -22,6 +23,7 @@ function only(role, element) {
 function StudentOutlet() {
   const { profile } = useAuth();
   const { pathname } = useLocation();
+  useRegistroActividad();
   if (!profile.color && pathname !== ROUTES.chooseColor) return <Navigate to={ROUTES.chooseColor} replace />;
   return (
     <ProgresoProvider>
