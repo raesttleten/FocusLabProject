@@ -34,7 +34,7 @@
 
 .login__card {
   width: 100%;
-  padding: 40px 48px 56px;
+  padding: 0 48px 56px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -43,24 +43,12 @@
 }
 
 .login__logo {
-  position: relative;
-  width: 96px;
-  height: 96px;
+  display: block;
   margin: 0 auto;
 }
 
-.login__logo img {
-  display: block;
-}
-
-.login__logo-bulb {
-  position: absolute;
-  top: 18px;
-  left: 22px;
-}
-
 .login__title {
-  margin: 4px 0 0;
+  margin: -10px 0 0;
   font-size: 32px;
   font-weight: 600;
   line-height: normal;
@@ -260,6 +248,6 @@
 
 @media (max-width: 480px) {
   .login__card {
-    padding: 32px 24px 40px;
+    padding: 0 24px 40px;
   }
 }

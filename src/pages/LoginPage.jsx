@@ -7,7 +7,7 @@ import { isEmailLogin, toAuthEmail } from '../auth/credentials.js';
 import { homePathFor } from '../auth/roles.js';
 import softShape1 from '../assets/login/soft-shape-1.svg';
 import softShape2 from '../assets/login/soft-shape-2.svg';
-import logoGlow from '../assets/login/logo-glow.svg';
+import logo from '../assets/logo_focuslap.png';
 import iconUser from '../assets/login/icon-user.svg';
 import iconLock from '../assets/login/icon-lock.svg';
 import iconEye from '../assets/login/icon-eye.svg';
@@ -15,7 +15,7 @@ import iconEyeOff from '../assets/login/icon-eye-off.svg';
 import './LoginPage.css';
 
 const MESSAGES = {
-  invalidCredentials: 'El usuario o la contraseña no son correctos.',
+  invalidCredentials: 'Revisa tu usuario o contraseña',
   noProfile: 'Tu cuenta todavía no está lista. Pídele ayuda a tu profe.',
   tooManyAttempts: 'Hiciste muchos intentos seguidos. Espera un momento y vuelve a intentarlo.',
   network: 'No pudimos conectarnos. Revisa el internet y vuelve a intentarlo.',
@@ -113,10 +113,7 @@ export default function LoginPage() {
 
       <div className="login__content">
         <section className="login__card" aria-labelledby="login-title">
-          <div className="login__logo">
-            <img src={logoGlow} alt="" width="96" height="96" />
-            <img className="login__logo-bulb" src="/logo-foco.svg" alt="" width="52" height="60" />
-          </div>
+          <img className="login__logo" src={logo} alt="" width="150" height="150" />
           <h1 id="login-title" className="login__title">
             FocusLap
           </h1>

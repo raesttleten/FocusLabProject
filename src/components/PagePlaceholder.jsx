@@ -1,4 +1,5 @@
 import { useAuth } from '../auth/AuthProvider.jsx';
+import logo from '../assets/logo_focuslap.png';
 
 export default function PagePlaceholder({ title, description, children }) {
   const { status, signOut } = useAuth();
@@ -6,7 +7,7 @@ export default function PagePlaceholder({ title, description, children }) {
   return (
     <main className="page">
       <section className="card">
-        <img src="/logo-foco.svg" alt="" width="52" height="60" />
+        <img src={logo} alt="" width="68" height="68" />
         <h1>{title}</h1>
         <p>{description}</p>
         {children}
