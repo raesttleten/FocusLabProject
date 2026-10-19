@@ -1,0 +1,95 @@
+.caf-vista {
+  display: flex;
+  gap: 8px;
+}
+
+.caf-juego {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  padding: clamp(32px, 7vh, 90px) 24px 32px;
+}
+
+.caf-juego > * {
+  flex: none;
+}
+
+.caf-titulo {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: normal;
+  color: var(--color-text);
+}
+
+.caf-tablero {
+  display: grid;
+  gap: 16px;
+  margin-top: clamp(20px, 4vh, 39px);
+}
+
+.caf-celda {
+  display: block;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-surface);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.caf-celda:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.caf-celda--acierto {
+  border: 2px solid var(--color-success);
+  background: var(--color-success-bg);
+}
+
+.caf-celda--error {
+  border: 2px solid var(--color-error);
+  background: var(--color-error-bg);
+}
+
+.caf-figura {
+  display: block;
+  margin: -1px;
+  fill: var(--color-primary);
+  fill-opacity: 0.6;
+}
+
+.caf-celda--acierto .caf-figura,
+.caf-celda--error .caf-figura {
+  margin: -2px;
+}
+
+.caf-contador {
+  margin: clamp(18px, 3.5vh, 34px) 0 0;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.caf-ver {
+  width: 220px;
+  margin-top: clamp(24px, 6vh, 88px);
+}
+
+@media (max-width: 900px) {
+  .caf-tablero {
+    grid-template-columns: repeat(4, 72px) !important;
+    gap: 12px;
+  }
+
+  .caf-ver {
+    margin-top: 32px;
+  }
+}

@@ -9,6 +9,7 @@ import * as repiteElPatron from './repite-el-patron/RepiteElPatron.jsx';
 import * as sigueElPunto from './sigue-el-punto/SigueElPunto.jsx';
 import * as encuentraElPar from './encuentra-el-par/EncuentraElPar.jsx';
 import * as semaforoAtento from './semaforo-atento/SemaforoAtento.jsx';
+import * as cazaFiguras from './caza-figuras/CazaFiguras.jsx';
 import { estaDesbloqueado, getJuego } from './catalogo.js';
 import { Instrucciones, MarcoJuego, Resultados } from './MarcoJuego.jsx';
 
@@ -18,6 +19,7 @@ const MODULOS = {
   'sigue-el-punto': sigueElPunto,
   'encuentra-el-par': encuentraElPar,
   'semaforo-atento': semaforoAtento,
+  'caza-figuras': cazaFiguras,
 };
 
 const FASE = {
