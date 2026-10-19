@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icono Misiones" clip-path="url(#clip0_0_18)">
+<g id="Group">
+<path id="Vector" d="M21.8571 12C21.8571 17.444 17.444 21.8571 12 21.8571C6.55605 21.8571 2.14286 17.444 2.14286 12C2.14286 6.55605 6.55605 2.14286 12 2.14286C17.444 2.14286 21.8571 6.55605 21.8571 12Z" stroke-width="2.4" stroke="white"/>
+<path id="Vector_2" d="M17.1429 12C17.1429 14.8403 14.8403 17.1429 12 17.1429C9.15968 17.1429 6.85714 14.8403 6.85714 12C6.85714 9.15968 9.15968 6.85714 12 6.85714C14.8403 6.85714 17.1429 9.15968 17.1429 12Z" stroke-width="2.4" stroke="white"/>
+</g>
+<path id="Vector_3" d="M12 13.7143C12.9468 13.7143 13.7143 12.9468 13.7143 12C13.7143 11.0532 12.9468 10.2857 12 10.2857C11.0532 10.2857 10.2857 11.0532 10.2857 12C10.2857 12.9468 11.0532 13.7143 12 13.7143Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_0_18">
+<rect width="24" height="24" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icono Ajustes" clip-path="url(#clip0_0_23)">
+<path id="Vector" d="M15.2 12C15.2 13.7673 13.7673 15.2 12 15.2C10.2327 15.2 8.8 13.7673 8.8 12C8.8 10.2327 10.2327 8.8 12 8.8C13.7673 8.8 15.2 10.2327 15.2 12Z" stroke-width="2.2" stroke="#9C96AC"/>
+<g id="Vector_2">
+<path d="M12 2V5ZM12 19V22ZM2 12H5ZM19 12H22ZM4.9 4.9L7 7ZM17 17L19.1 19.1ZM4.9 19.1L7 17ZM17 7L19.1 4.9Z" fill="black"/>
+<path d="M12 2V5M12 19V22M2 12H5M19 12H22M4.9 4.9L7 7M17 17L19.1 19.1M4.9 19.1L7 17M17 7L19.1 4.9" stroke-width="2.2" stroke-linecap="round" stroke="#9C96AC"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_23">
+<rect width="24" height="24" fill="white"/>
+</clipPath>
+</defs>
+</svg>

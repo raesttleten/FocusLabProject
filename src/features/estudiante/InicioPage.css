@@ -1,0 +1,338 @@
+.inicio {
+  display: grid;
+  grid-template-columns: minmax(0, 896fr) minmax(320px, 468fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.inicio-cargando {
+  margin: 40px 0;
+  font-size: 18px;
+  color: var(--color-text-muted);
+}
+
+.inicio-cuentos {
+  padding: 35px 39px 40px;
+}
+
+.inicio-cuentos__titulo {
+  margin: 13px 0 0;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: normal;
+  color: var(--color-text);
+}
+
+.inicio-cuentos__descripcion {
+  margin: 8px 0 0;
+  font-size: 18px;
+  color: var(--color-text-muted);
+}
+
+.inicio-cuentos__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 42px;
+}
+
+.cuento-tarjeta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 212px;
+  padding: 31px 24px 31px 23px;
+  background: #fbfafd;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+}
+
+.cuento-tarjeta__portada {
+  flex: none;
+  width: 148px;
+  height: 148px;
+  object-fit: cover;
+  border-radius: 16px;
+  background: var(--color-primary-soft);
+}
+
+.cuento-tarjeta__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cuento-tarjeta__titulo {
+  margin: 6px 0 0;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: normal;
+  color: var(--color-text);
+}
+
+.cuento-tarjeta__detalle {
+  margin: 10px 0 0;
+  font-size: 16px;
+  color: var(--color-text-muted);
+}
+
+.cuento-estado {
+  display: inline-flex;
+  margin-top: 21px;
+  padding: 7px 14px;
+  border-radius: 15px;
+  background: var(--color-primary-soft);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.cuento-estado--hecho {
+  background: var(--color-success-bg);
+  color: #3e8a5a;
+}
+
+.cuento-tarjeta__boton {
+  flex: none;
+  width: 180px;
+}
+
+.inicio-semana__titulo {
+  margin-top: 42px;
+}
+
+.inicio-semana {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 14px;
+}
+
+.semana-dia {
+  min-height: 100px;
+  padding: 14px 16px;
+  background: #faf9fc;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  color: var(--color-text-subtle);
+}
+
+.semana-dia p {
+  margin: 0;
+}
+
+.semana-dia__nombre {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.semana-dia__tema {
+  margin-top: 6px !important;
+  font-size: 15px;
+}
+
+.semana-dia__estado {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px !important;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.semana-dia--hoy,
+.semana-dia--terminado {
+  background: var(--color-surface);
+  border: 2px solid var(--color-primary);
+  padding: 13px 15px;
+}
+
+.semana-dia--hoy .semana-dia__nombre,
+.semana-dia--terminado .semana-dia__nombre,
+.semana-dia--hecho .semana-dia__nombre {
+  color: var(--color-text);
+}
+
+.semana-dia--hoy .semana-dia__tema,
+.semana-dia--terminado .semana-dia__tema,
+.semana-dia--hecho .semana-dia__tema {
+  color: var(--color-text-muted);
+}
+
+.semana-dia--hoy .semana-dia__estado {
+  color: var(--color-primary);
+}
+
+.semana-dia--terminado .semana-dia__estado,
+.semana-dia--hecho .semana-dia__estado {
+  color: #3e8a5a;
+}
+
+.semana-dia--hecho {
+  background: var(--color-surface);
+}
+
+.inicio-candado {
+  display: block;
+  flex: none;
+}
+
+.inicio-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inicio-mascota {
+  padding: 23px 23px 24px;
+}
+
+.inicio-mascota__mensaje {
+  margin: 14px 0 0;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.inicio-mascota__boton {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.inicio-juegos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 23px 24px;
+}
+
+.inicio-juegos__descripcion {
+  margin: 6px 0 0;
+  font-size: 15px;
+  color: var(--color-text-muted);
+}
+
+.inicio-juegos__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.juego-fila {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 80px;
+  padding: 11px 16px 11px 13px;
+  background: #fbfafd;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+}
+
+.juego-fila__icono {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--color-primary-soft);
+}
+
+.juego-fila__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.juego-fila__info p {
+  margin: 0;
+}
+
+.juego-fila__nombre {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.juego-fila__detalle {
+  margin-top: 4px !important;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.juego-fila__jugar {
+  height: 44px;
+  padding: 0 24px;
+}
+
+.inicio-otros__titulo {
+  margin-top: 20px;
+}
+
+.inicio-otros {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.inicio-otros__dia {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 36px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.inicio-otros__texto {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #3e8a5a;
+}
+
+.inicio-otros__dia--futuro .inicio-otros__texto {
+  color: var(--color-text-subtle);
+}
+
+.inicio-juegos__todos {
+  width: 100%;
+  margin-top: auto;
+}
+
+.inicio-otros + .inicio-juegos__todos {
+  margin-top: 20px;
+}
+
+@media (max-width: 1180px) {
+  .inicio {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .inicio-lateral {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .inicio-cuentos {
+    padding: 28px 24px;
+  }
+
+  .cuento-tarjeta {
+    flex-wrap: wrap;
+  }
+
+  .cuento-tarjeta__boton {
+    width: 100%;
+  }
+
+  .inicio-semana {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .inicio-lateral {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

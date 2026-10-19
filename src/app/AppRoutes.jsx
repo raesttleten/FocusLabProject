@@ -1,11 +1,15 @@
-import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import { ROUTES } from './routes.js';
 import RequireRole from '../auth/RequireRole.jsx';
+import { useAuth } from '../auth/AuthProvider.jsx';
 import { ROLES } from '../auth/roles.js';
 import { ProgresoProvider } from '../features/progreso/ProgresoProvider.jsx';
+import InicioPage from '../features/estudiante/InicioPage.jsx';
+import LecturaPage from '../features/lectura/LecturaPage.jsx';
+import PreguntasPage from '../features/preguntas/PreguntasPage.jsx';
+import LogradoPage from '../features/preguntas/LogradoPage.jsx';
 import LoginPage from '../pages/LoginPage.jsx';
 import ChooseColorPage from '../pages/ChooseColorPage.jsx';
-import StudentHomePage from '../pages/StudentHomePage.jsx';
 import GamesPage from '../pages/GamesPage.jsx';
 import TeacherDashboardPage from '../pages/TeacherDashboardPage.jsx';
 import ResearcherDashboardPage from '../pages/ResearcherDashboardPage.jsx';
@@ -14,12 +18,14 @@ function only(role, element) {
   return <RequireRole role={role}>{element}</RequireRole>;
 }
 
-function StudentArea() {
-  return only(
-    ROLES.student,
+function StudentOutlet() {
+  const { profile } = useAuth();
+  const { pathname } = useLocation();
+  if (!profile.color && pathname !== ROUTES.chooseColor) return <Navigate to={ROUTES.chooseColor} replace />;
+  return (
     <ProgresoProvider>
       <Outlet />
-    </ProgresoProvider>,
+    </ProgresoProvider>
   );
 }
 
@@ -28,10 +34,14 @@ export default function AppRoutes() {
     <Routes>
       <Route path="/" element={<Navigate to={ROUTES.login} replace />} />
       <Route path={ROUTES.login} element={<LoginPage />} />
-      <Route element={<StudentArea />}>
+      <Route element={only(ROLES.student, <StudentOutlet />)}>
         <Route path={ROUTES.chooseColor} element={<ChooseColorPage />} />
-        <Route path={ROUTES.studentHome} element={<StudentHomePage />} />
+        <Route path={ROUTES.studentHome} element={<InicioPage />} />
+        <Route path={ROUTES.reading} element={<LecturaPage />} />
+        <Route path={ROUTES.questions} element={<PreguntasPage />} />
+        <Route path={ROUTES.storyDone} element={<LogradoPage />} />
         <Route path={ROUTES.games} element={<GamesPage />} />
+        <Route path={ROUTES.game} element={<GamesPage />} />
       </Route>
       <Route path={ROUTES.teacherDashboard} element={only(ROLES.teacher, <TeacherDashboardPage />)} />
       <Route
