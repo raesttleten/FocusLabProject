@@ -8,7 +8,8 @@ import {
 } from 'firebase/auth';
 import { doc, getDoc, getFirestore, setDoc, terminate } from 'firebase/firestore';
 
-const STUDENT_CODES = ['E01', 'E02', 'E03', 'E04', 'E05'];
+const STUDENT_COUNT = 20;
+const STUDENT_CODES = Array.from({ length: STUDENT_COUNT }, (_, i) => `E${String(i + 1).padStart(2, '0')}`);
 const STUDENT_EMAIL_DOMAIN = 'focuslab.app';
 
 const [teacherEmail, teacherPassword, studentPassword] = process.argv.slice(2);
@@ -80,7 +81,7 @@ async function main() {
       console.error(`${codigo}: no se pudo crear (${error.code ?? error.message}).`);
     }
   }
-  console.log(`\nLos estudiantes entran con su código (E01…E05) y la contraseña "${studentPassword}".`);
+  console.log(`\nLos estudiantes entran con su código (${STUDENT_CODES[0]}…${STUDENT_CODES.at(-1)}) y la contraseña "${studentPassword}".`);
 }
 
 main()

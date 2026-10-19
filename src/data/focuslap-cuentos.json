@@ -1,0 +1,283 @@
+{
+  "nota": "Contenido de lectura de FocusLap. ==texto== = palabra resaltada en el cuento (señal gráfica). 'correcta' es el índice (0-3) de la opción correcta; null = reflexión, todas valen.",
+  "dias": [
+    {
+      "dia": 1,
+      "componente": "Tema e idea principal",
+      "componente_guia": "1. Diferenciar el tema de la idea principal",
+      "titulo_nino": "¿De qué trata y qué nos quiere decir?",
+      "explicacion": [
+        "El tema es de qué habla el cuento, dicho en pocas palabras, como si fuera un título.",
+        "La idea principal es el mensaje más importante que te deja el cuento. Se dice en una frase completa."
+      ],
+      "ejemplo": "Si un cuento habla de un perro que se pierde y al final vuelve a la casa: el tema es \"un perro perdido\" y la idea principal es \"con ayuda de los vecinos, el perro encontró el camino a casa\"."
+    },
+    {
+      "dia": 2,
+      "componente": "Pistas del autor y lo que te importa a ti",
+      "componente_guia": "2. Relevancia textual y relevancia contextual",
+      "titulo_nino": "Busca las pistas que deja el autor",
+      "explicacion": [
+        "Quien escribe deja pistas para mostrar lo más importante. Hoy vas a buscarlas:",
+        "Palabras pista: \"lo importante\", \"lo relevante\".",
+        "Palabras resaltadas: las que se ven de otro color o en negrita.",
+        "Y también cuenta lo que a ti te parece importante, según lo que te gusta y lo que ya sabes."
+      ],
+      "ejemplo": "Si lees \"Lo importante es llegar temprano\", la pista \"lo importante\" te avisa que esa frase pesa más que las demás."
+    },
+    {
+      "dia": 3,
+      "componente": "Resumir en tres pasos",
+      "componente_guia": "3. Las tres reglas (modelo de Kintsch y van Dijk): omisión, sustitución y frase tema",
+      "titulo_nino": "Quita, cambia y resume",
+      "explicacion": [
+        "Para resumir un cuento puedes seguir tres pasos:",
+        "Quitar lo que sobra: los detalles que, si los borras, no cambian la historia.",
+        "Cambiar por palabras parecidas: decir lo mismo con otras palabras.",
+        "Crear una frase corta: una sola frase, con las palabras necesarias, que diga lo más importante."
+      ],
+      "ejemplo": "\"Juan, que tenía una camiseta azul, corrió muy rápido y ganó la carrera.\" Si quitas \"que tenía una camiseta azul\", la historia sigue igual. Frase corta: \"Juan ganó la carrera\"."
+    }
+  ],
+  "cuentos": [
+    {
+      "id": "c1",
+      "titulo": "El último penalti",
+      "palabras_aprox": 319,
+      "parrafos": [
+        "Mateo tenía doce años y era el arquero del equipo de microfútbol de su colegio. Ese sábado era la final del torneo del barrio, contra el colegio de la otra cuadra. Desde temprano, su abuela le preparó un caldo de costilla y le dijo: \"Mijo, coma, que con hambre nadie ataja\".",
+        "La cancha estaba llena. Había vecinos con banderas, un señor vendiendo obleas con arequipe y hasta un perro que corría detrás de las palomas. Mateo miraba para todos lados. Oía los gritos, los pitos y la música de un parlante. Cada vez que el balón llegaba a su arco, él estaba pensando en otra cosa.",
+        "En el primer tiempo le metieron dos goles. En el descanso, la profe Liliana se sentó a su lado.",
+        "\"Mateo, ¿usted qué está mirando?\", le preguntó.",
+        "\"Todo, profe. Hay mucho ruido.\"",
+        "\"Lo importante no es lo que pasa afuera de la cancha, sino el balón. Escoja una sola cosa y mírela con ==toda su atención==.\"",
+        "En el segundo tiempo, Mateo le hizo caso. Dejó de mirar las obleas, el perro y el parlante. Solo miraba el balón: cómo giraba y hacia dónde apuntaba el pie del delantero. Atajó un tiro, y luego otro. Sofía le pasó el balón a Juan, y Juan metió un gol. Más tarde, Sofía hizo el empate.",
+        "El partido terminó 2 a 2 y se fue a penaltis. En el último, el delantero más alto del otro equipo tomó impulso. La gente gritaba, pero Mateo ya no oía nada. Vio el pie, vio el balón y se lanzó a la derecha. ¡Lo atajó!",
+        "Esa noche, mientras comía arepa con queso, Mateo le contó todo a su abuela: \"Al principio quería ver todo y no veía nada. Cuando me fijé en una sola cosa, todo me salió mejor\".",
+        "En resumen, Mateo aprendió que poner la atención en lo que de verdad importa ayuda a lograr lo que uno se propone."
+      ],
+      "preguntas": {
+        "1": [
+          {
+            "tipo": "Tema",
+            "enunciado": "¿De qué trata el cuento? Escoge la opción que lo dice en pocas palabras.",
+            "opciones": [
+              "La atención en un partido de microfútbol",
+              "Las obleas con arequipe",
+              "Los perros del barrio",
+              "La comida de la abuela"
+            ],
+            "correcta": 0
+          },
+          {
+            "tipo": "Idea principal",
+            "enunciado": "¿Cuál es la idea principal del cuento?",
+            "opciones": [
+              "Mateo atajó el penalti porque era el más alto",
+              "Cuando Mateo puso su atención en una sola cosa, jugó mucho mejor",
+              "En los partidos de fútbol siempre hay mucho ruido",
+              "La abuela de Mateo cocina muy rico"
+            ],
+            "correcta": 1
+          }
+        ],
+        "2": [
+          {
+            "tipo": "Palabras pista",
+            "enunciado": "¿Qué oración del cuento usa la pista \"lo importante\"?",
+            "opciones": [
+              "\"Mijo, coma, que con hambre nadie ataja.\"",
+              "\"Lo importante no es lo que pasa afuera de la cancha, sino el balón.\"",
+              "\"Hay mucho ruido.\"",
+              "\"¡Lo atajó!\""
+            ],
+            "correcta": 1
+          },
+          {
+            "tipo": "Palabras resaltadas",
+            "enunciado": "¿Qué palabras aparecen resaltadas en el cuento?",
+            "opciones": [
+              "caldo de costilla",
+              "toda su atención",
+              "arepa con queso",
+              "el último penalti"
+            ],
+            "correcta": 1
+          },
+          {
+            "tipo": "Lo que te importa a ti",
+            "enunciado": "Para ti, ¿qué fue lo más importante del cuento? (Aquí todas las respuestas valen.)",
+            "opciones": [
+              "Que Mateo dejó de distraerse",
+              "Que la profe lo ayudó",
+              "Que el equipo no se rindió",
+              "Que Mateo le contó todo a su abuela"
+            ],
+            "correcta": null
+          }
+        ],
+        "3": [
+          {
+            "tipo": "Quitar lo que sobra",
+            "enunciado": "¿Qué oración podríamos quitar sin que el cuento pierda su idea?",
+            "opciones": [
+              "\"Había un perro que corría detrás de las palomas.\"",
+              "\"Solo miraba el balón.\"",
+              "\"¡Lo atajó!\"",
+              "\"Cuando me fijé en una sola cosa, todo me salió mejor.\""
+            ],
+            "correcta": 0
+          },
+          {
+            "tipo": "Cambiar por palabras parecidas",
+            "enunciado": "¿Qué frase dice lo mismo que \"mírela con toda su atención\"?",
+            "opciones": [
+              "Mírela de reojo",
+              "Concéntrese en ella",
+              "Olvídese de ella",
+              "Mírela de vez en cuando"
+            ],
+            "correcta": 1
+          },
+          {
+            "tipo": "Frase corta que resume",
+            "enunciado": "¿Qué frase resume mejor todo el cuento con pocas palabras?",
+            "opciones": [
+              "El partido terminó 2 a 2",
+              "Mateo comió arepa con queso",
+              "Concentrarse en lo importante ayuda a lograr las metas",
+              "La cancha estaba llena de gente"
+            ],
+            "correcta": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "c2",
+      "titulo": "La huerta del salón",
+      "palabras_aprox": 263,
+      "parrafos": [
+        "En el colegio de Valentina, en Usme, había un patio pequeño lleno de piedras y bolsas viejas. Un lunes, el profe Andrés llegó con una caja de semillas: cilantro, lechuga, fríjol y tomate.",
+        "\"Vamos a hacer una huerta\", dijo. \"Pero les advierto: las plantas no crecen de un día para otro\".",
+        "Entre todos sacaron las piedras, recogieron la basura y prepararon la tierra con abono. Valentina sembró fríjoles. Samuel, su compañero de puesto, sembró lechugas. Ese día llovió tanto que a todos se les mojaron los zapatos, y la señora de la cafetería les regaló aromática.",
+        "Pasó una semana y no salía nada. Samuel se aburrió.",
+        "\"Esto no sirve para nada\", dijo, y dejó de regar.",
+        "Valentina, en cambio, siguió yendo cada mañana. Regaba un poquito, quitaba la maleza y miraba la tierra con cuidado. Un día vio algo verde y pequeñito asomándose. ¡Era su primer fríjol!",
+        "Entonces Valentina le enseñó a Samuel cómo cuidar las plantas. Le explicó que no había que echarles mucha agua, que había que quitar las hojas secas y que, sobre todo, había que tener ==paciencia==. Samuel volvió a regar sus lechugas, y a las tres semanas también salieron.",
+        "Al final del periodo, la huerta estaba llena de colores. Con lo que cosecharon, prepararon una ensalada para todo el salón. El profe Andrés les dijo: \"Lo relevante no es la ensalada, sino lo que aprendieron: cuidar algo todos los días, aunque no se vean resultados enseguida\".",
+        "En conclusión, la huerta les enseñó que las cosas valiosas toman tiempo y que, con constancia y paciencia, el esfuerzo da frutos."
+      ],
+      "preguntas": {
+        "1": [
+          {
+            "tipo": "Tema",
+            "enunciado": "¿De qué trata el cuento? Escoge la opción que lo dice en pocas palabras.",
+            "opciones": [
+              "La lluvia en Usme",
+              "La paciencia al cuidar una huerta",
+              "La aromática de la cafetería",
+              "Los zapatos mojados"
+            ],
+            "correcta": 1
+          },
+          {
+            "tipo": "Idea principal",
+            "enunciado": "¿Cuál es la idea principal del cuento?",
+            "opciones": [
+              "El fríjol crece más rápido que la lechuga",
+              "Samuel no sabía sembrar",
+              "Cuidar algo con paciencia y constancia trae buenos resultados",
+              "Al colegio le faltaba un patio más grande"
+            ],
+            "correcta": 2
+          }
+        ],
+        "2": [
+          {
+            "tipo": "Palabras pista",
+            "enunciado": "¿Qué oración del cuento usa la pista \"lo relevante\"?",
+            "opciones": [
+              "\"Esto no sirve para nada.\"",
+              "\"Vamos a hacer una huerta.\"",
+              "\"Lo relevante no es la ensalada, sino lo que aprendieron.\"",
+              "\"¡Era su primer fríjol!\""
+            ],
+            "correcta": 2
+          },
+          {
+            "tipo": "Palabras resaltadas",
+            "enunciado": "¿Qué palabra aparece resaltada en el cuento?",
+            "opciones": [
+              "semillas",
+              "ensalada",
+              "maleza",
+              "paciencia"
+            ],
+            "correcta": 3
+          },
+          {
+            "tipo": "Lo que te importa a ti",
+            "enunciado": "Para ti, ¿qué fue lo más importante del cuento? (Aquí todas las respuestas valen.)",
+            "opciones": [
+              "Que Valentina no se rindió",
+              "Que Valentina ayudó a Samuel",
+              "Que hicieron la huerta entre todos",
+              "Que compartieron la ensalada"
+            ],
+            "correcta": null
+          }
+        ],
+        "3": [
+          {
+            "tipo": "Quitar lo que sobra",
+            "enunciado": "¿Qué oración podríamos quitar sin que el cuento pierda su idea?",
+            "opciones": [
+              "\"Valentina siguió yendo cada mañana.\"",
+              "\"La señora de la cafetería les regaló aromática.\"",
+              "\"Había que tener paciencia.\"",
+              "\"Samuel volvió a regar sus lechugas.\""
+            ],
+            "correcta": 1
+          },
+          {
+            "tipo": "Cambiar por palabras parecidas",
+            "enunciado": "En el cuento aparece la palabra \"constancia\". ¿Qué quiere decir?",
+            "opciones": [
+              "Rendirse rápido",
+              "Hacer algo una sola vez",
+              "Seguir intentándolo todos los días",
+              "Hacer las cosas con afán"
+            ],
+            "correcta": 2
+          },
+          {
+            "tipo": "Frase corta que resume",
+            "enunciado": "¿Qué frase resume mejor todo el cuento con pocas palabras?",
+            "opciones": [
+              "Con paciencia y constancia, el esfuerzo da frutos",
+              "Valentina sembró fríjoles",
+              "Un lunes llegó una caja de semillas",
+              "La huerta tenía cilantro y tomate"
+            ],
+            "correcta": 0
+          }
+        ]
+      }
+    }
+  ],
+  "juegos_por_dia": {
+    "1": [
+      "A Todo Foco",
+      "Repite el Patrón"
+    ],
+    "2": [
+      "Sigue el Punto",
+      "Encuentra el Par"
+    ],
+    "3": [
+      "Semáforo Atento",
+      "Caza Figuras"
+    ]
+  }
+}
