@@ -5,11 +5,13 @@ import { useProgreso } from '../progreso/ProgresoProvider.jsx';
 import { registrarPartida } from '../progreso/repositorio.js';
 import { ahora } from '../progreso/reloj.js';
 import * as aTodoFoco from './a-todo-foco/ATodoFoco.jsx';
+import * as repiteElPatron from './repite-el-patron/RepiteElPatron.jsx';
 import { estaDesbloqueado, getJuego } from './catalogo.js';
 import { Instrucciones, MarcoJuego, Resultados } from './MarcoJuego.jsx';
 
 const MODULOS = {
   'a-todo-foco': aTodoFoco,
+  'repite-el-patron': repiteElPatron,
 };
 
 const FASE = {
