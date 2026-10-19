@@ -1,5 +1,5 @@
 {
-  "nota": "Contenido de lectura de FocusLap. ==texto== = palabra resaltada en el cuento (señal gráfica). 'correcta' es el índice (0-3) de la opción correcta; null = reflexión, todas valen.",
+  "nota": "Contenido de lectura de FocusLap. ==texto== = palabra resaltada en el cuento. \"correcta\" es el índice (0 a 3) de la opción correcta; null = pregunta de opinión, todas valen. \"pista\" se muestra encima de las opciones.",
   "dias": [
     {
       "dia": 1,
@@ -67,7 +67,8 @@
               "Los perros del barrio",
               "La comida de la abuela"
             ],
-            "correcta": 0
+            "correcta": 0,
+            "pista": "El tema es de qué habla el cuento, dicho en pocas palabras, como un título."
           },
           {
             "tipo": "Idea principal",
@@ -78,7 +79,8 @@
               "En los partidos de fútbol siempre hay mucho ruido",
               "La abuela de Mateo cocina muy rico"
             ],
-            "correcta": 1
+            "correcta": 1,
+            "pista": "La idea principal es el mensaje más importante que te deja el cuento, en una frase completa."
           }
         ],
         "2": [
@@ -91,7 +93,8 @@
               "\"Hay mucho ruido.\"",
               "\"¡Lo atajó!\""
             ],
-            "correcta": 1
+            "correcta": 1,
+            "pista": "Quien escribe usa palabras como \"lo importante\" o \"lo relevante\" para avisarte qué es lo que más importa."
           },
           {
             "tipo": "Palabras resaltadas",
@@ -102,18 +105,20 @@
               "arepa con queso",
               "el último penalti"
             ],
-            "correcta": 1
+            "correcta": 1,
+            "pista": "Las palabras resaltadas se ven de otro color o en negrita. Vuelve al cuento y búscalas."
           },
           {
             "tipo": "Lo que te importa a ti",
-            "enunciado": "Para ti, ¿qué fue lo más importante del cuento? (Aquí todas las respuestas valen.)",
+            "enunciado": "Para ti, ¿qué fue lo más importante del cuento?",
             "opciones": [
               "Que Mateo dejó de distraerse",
               "Que la profe lo ayudó",
               "Que el equipo no se rindió",
               "Que Mateo le contó todo a su abuela"
             ],
-            "correcta": null
+            "correcta": null,
+            "pista": "Aquí no hay respuesta mala: cuenta lo que tú piensas, según lo que te gusta y lo que ya sabes."
           }
         ],
         "3": [
@@ -126,7 +131,8 @@
               "\"¡Lo atajó!\"",
               "\"Cuando me fijé en una sola cosa, todo me salió mejor.\""
             ],
-            "correcta": 0
+            "correcta": 0,
+            "pista": "Busca un detalle que, si lo borras, la historia sigue igual."
           },
           {
             "tipo": "Cambiar por palabras parecidas",
@@ -137,7 +143,8 @@
               "Olvídese de ella",
               "Mírela de vez en cuando"
             ],
-            "correcta": 1
+            "correcta": 1,
+            "pista": "Busca la opción que dice lo mismo con otras palabras."
           },
           {
             "tipo": "Frase corta que resume",
@@ -148,7 +155,8 @@
               "Concentrarse en lo importante ayuda a lograr las metas",
               "La cancha estaba llena de gente"
             ],
-            "correcta": 2
+            "correcta": 2,
+            "pista": "Una buena frase resumen es corta y dice lo más importante, sin detalles."
           }
         ]
       }
@@ -179,7 +187,8 @@
               "La aromática de la cafetería",
               "Los zapatos mojados"
             ],
-            "correcta": 1
+            "correcta": 1,
+            "pista": "El tema es de qué habla el cuento, dicho en pocas palabras, como un título."
           },
           {
             "tipo": "Idea principal",
@@ -190,7 +199,8 @@
               "Cuidar algo con paciencia y constancia trae buenos resultados",
               "Al colegio le faltaba un patio más grande"
             ],
-            "correcta": 2
+            "correcta": 2,
+            "pista": "La idea principal es el mensaje más importante que te deja el cuento, en una frase completa."
           }
         ],
         "2": [
@@ -203,7 +213,8 @@
               "\"Lo relevante no es la ensalada, sino lo que aprendieron.\"",
               "\"¡Era su primer fríjol!\""
             ],
-            "correcta": 2
+            "correcta": 2,
+            "pista": "Quien escribe usa palabras como \"lo importante\" o \"lo relevante\" para avisarte qué es lo que más importa."
           },
           {
             "tipo": "Palabras resaltadas",
@@ -214,18 +225,20 @@
               "maleza",
               "paciencia"
             ],
-            "correcta": 3
+            "correcta": 3,
+            "pista": "Las palabras resaltadas se ven de otro color o en negrita. Vuelve al cuento y búscalas."
           },
           {
             "tipo": "Lo que te importa a ti",
-            "enunciado": "Para ti, ¿qué fue lo más importante del cuento? (Aquí todas las respuestas valen.)",
+            "enunciado": "Para ti, ¿qué fue lo más importante del cuento?",
             "opciones": [
               "Que Valentina no se rindió",
               "Que Valentina ayudó a Samuel",
               "Que hicieron la huerta entre todos",
               "Que compartieron la ensalada"
             ],
-            "correcta": null
+            "correcta": null,
+            "pista": "Aquí no hay respuesta mala: cuenta lo que tú piensas, según lo que te gusta y lo que ya sabes."
           }
         ],
         "3": [
@@ -238,7 +251,8 @@
               "\"Había que tener paciencia.\"",
               "\"Samuel volvió a regar sus lechugas.\""
             ],
-            "correcta": 1
+            "correcta": 1,
+            "pista": "Busca un detalle que, si lo borras, la historia sigue igual."
           },
           {
             "tipo": "Cambiar por palabras parecidas",
@@ -249,7 +263,8 @@
               "Seguir intentándolo todos los días",
               "Hacer las cosas con afán"
             ],
-            "correcta": 2
+            "correcta": 2,
+            "pista": "Busca la opción que dice lo mismo con otras palabras."
           },
           {
             "tipo": "Frase corta que resume",
@@ -260,7 +275,8 @@
               "Un lunes llegó una caja de semillas",
               "La huerta tenía cilantro y tomate"
             ],
-            "correcta": 0
+            "correcta": 0,
+            "pista": "Una buena frase resumen es corta y dice lo más importante, sin detalles."
           }
         ]
       }

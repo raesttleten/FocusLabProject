@@ -9,7 +9,7 @@ export const ROLES = {
 export function homePathFor(profile) {
   switch (profile.rol) {
     case ROLES.student:
-      return profile.tema ? ROUTES.studentMission : ROUTES.chooseColor;
+      return profile.color ? ROUTES.studentHome : ROUTES.chooseColor;
     case ROLES.teacher:
       return ROUTES.teacherDashboard;
     case ROLES.researcher:

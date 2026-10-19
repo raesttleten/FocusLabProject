@@ -50,12 +50,14 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [attempted, setAttempted] = useState(false);
   const [error, setError] = useState('');
   const [resetMessage, setResetMessage] = useState('');
 
   if (status === 'ready') return <Navigate to={homePathFor(profile)} replace />;
 
   const busy = submitting || status === 'loading';
+  const signingIn = submitting || (attempted && status === 'loading');
   const visibleError = error || (profileError && !busy ? MESSAGES.noProfile : '');
 
   async function handleSubmit(event) {
@@ -72,6 +74,7 @@ export default function LoginPage() {
       return;
     }
     setSubmitting(true);
+    setAttempted(true);
     try {
       await signInWithEmailAndPassword(auth, toAuthEmail(username), password);
     } catch (signInError) {
@@ -115,7 +118,7 @@ export default function LoginPage() {
             <img className="login__logo-bulb" src="/logo-foco.svg" alt="" width="52" height="60" />
           </div>
           <h1 id="login-title" className="login__title">
-            FocusLab
+            FocusLap
           </h1>
           <p className="login__subtitle">Ingresa con tu usuario para empezar</p>
 
@@ -177,8 +180,8 @@ export default function LoginPage() {
               {resetMessage}
             </p>
 
-            <button type="submit" className="login__submit" disabled={busy} aria-busy={busy}>
-              {busy ? 'Ingresando…' : 'Ingresar'}
+            <button type="submit" className="login__submit" disabled={busy} aria-busy={signingIn}>
+              {signingIn ? 'Ingresando…' : 'Ingresar'}
             </button>
             <p id="login-error" className="login__error" role="alert">
               {visibleError}

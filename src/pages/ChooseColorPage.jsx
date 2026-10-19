@@ -1,28 +1,18 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PagePlaceholder from '../components/PagePlaceholder.jsx';
 import { ROUTES } from '../app/routes.js';
 import { useAuth } from '../auth/AuthProvider.jsx';
-import { THEMES } from '../theme/themes.js';
+import { colorFromTheme, THEMES } from '../theme/themes.js';
 import { useTheme } from '../theme/ThemeProvider.jsx';
 
 export default function ChooseColorPage() {
   const { theme, setTheme } = useTheme();
-  const { saveTheme } = useAuth();
+  const { saveColor } = useAuth();
   const navigate = useNavigate();
-  const [saving, setSaving] = useState(false);
-  const [error, setError] = useState('');
 
-  async function handleSave() {
-    setSaving(true);
-    setError('');
-    try {
-      await saveTheme(theme);
-      navigate(ROUTES.studentMission, { replace: true });
-    } catch {
-      setError('No pudimos guardar tu color. Vuelve a intentarlo.');
-      setSaving(false);
-    }
+  function handleSave() {
+    saveColor(colorFromTheme(theme));
+    navigate(ROUTES.studentHome, { replace: true });
   }
 
   return (
@@ -44,10 +34,9 @@ export default function ChooseColorPage() {
           </button>
         ))}
       </div>
-      <button type="button" className="primary-button" onClick={handleSave} disabled={saving}>
-        {saving ? 'Guardando…' : 'Guardar'}
+      <button type="button" className="primary-button" onClick={handleSave}>
+        Guardar
       </button>
-      <p role="alert">{error}</p>
     </PagePlaceholder>
   );
 }

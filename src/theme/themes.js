@@ -6,3 +6,11 @@ export const THEMES = [
 ];
 
 export const DEFAULT_THEME = 'lila';
+
+export function themeFromColor(color) {
+  return THEMES.find((theme) => theme.label === color)?.id ?? null;
+}
+
+export function colorFromTheme(themeId) {
+  return THEMES.find((theme) => theme.id === themeId)?.label ?? null;
+}

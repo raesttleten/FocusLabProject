@@ -1,8 +1,9 @@
-import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { onAuthStateChanged, signOut as firebaseSignOut } from 'firebase/auth';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../services/firebase.js';
 import { useTheme } from '../theme/ThemeProvider.jsx';
+import { themeFromColor } from '../theme/themes.js';
 import { isStudentEmail } from './credentials.js';
 import { ROLES } from './roles.js';
 
@@ -53,22 +54,37 @@ export function AuthProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    if (state.profile?.tema) setTheme(state.profile.tema);
-  }, [state.profile?.tema, setTheme]);
+    const theme = themeFromColor(state.profile?.color);
+    if (theme) setTheme(theme);
+  }, [state.profile?.color, setTheme]);
 
-  const saveTheme = useCallback(
-    async (tema) => {
-      await updateDoc(doc(db, 'usuarios', state.profile.uid), { tema });
-      setState((current) => ({ ...current, profile: { ...current.profile, tema } }));
+  const uid = state.profile?.uid;
+
+  const updateProfile = useCallback(
+    (changes) => {
+      let previous = null;
+      setState((current) => {
+        previous = Object.fromEntries(Object.keys(changes).map((key) => [key, current.profile?.[key]]));
+        return { ...current, profile: { ...current.profile, ...changes } };
+      });
+      updateDoc(doc(db, 'usuarios', uid), changes).catch((error) => {
+        console.error('No se pudo guardar el perfil', error);
+        setState((current) => ({ ...current, profile: { ...current.profile, ...previous } }));
+      });
     },
-    [state.profile?.uid],
+    [uid],
   );
+
+  const saveColor = useCallback((color) => updateProfile({ color }), [updateProfile]);
 
   const signOut = useCallback(() => firebaseSignOut(auth), []);
 
-  return (
-    <AuthContext.Provider value={{ ...state, saveTheme, signOut }}>{children}</AuthContext.Provider>
+  const value = useMemo(
+    () => ({ ...state, updateProfile, saveColor, signOut }),
+    [state, updateProfile, saveColor, signOut],
   );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {

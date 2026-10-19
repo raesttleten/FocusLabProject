@@ -8,15 +8,20 @@ import {
 } from 'firebase/auth';
 import { doc, getDoc, getFirestore, setDoc, terminate } from 'firebase/firestore';
 
-const STUDENT_COUNT = 20;
-const STUDENT_CODES = Array.from({ length: STUDENT_COUNT }, (_, i) => `E${String(i + 1).padStart(2, '0')}`);
 const STUDENT_EMAIL_DOMAIN = 'focuslab.app';
+const DEFAULT_MASCOTA = { nombre: 'Lumi', prenda: 'lila' };
 
-const [teacherEmail, teacherPassword, studentPassword] = process.argv.slice(2);
-if (!teacherEmail || !teacherPassword || !studentPassword) {
-  console.error('Uso: node scripts/seed-test-users.mjs <correo-docente> <contraseña-docente> <contraseña-estudiantes>');
+const [teacherEmail, teacherPassword, studentPassword, totalArg] = process.argv.slice(2);
+if (!teacherEmail || !teacherPassword || !studentPassword || !totalArg) {
+  console.error('Uso: node scripts/seed-test-users.mjs <correo-docente> <contraseña-docente> <contraseña-estudiantes> <total-estudiantes>');
   process.exit(1);
 }
+const STUDENT_COUNT = Number(totalArg);
+if (!Number.isInteger(STUDENT_COUNT) || STUDENT_COUNT < 1 || STUDENT_COUNT > 99) {
+  console.error('El total de estudiantes debe ser un número entero entre 1 y 99.');
+  process.exit(1);
+}
+const STUDENT_CODES = Array.from({ length: STUDENT_COUNT }, (_, i) => `E${String(i + 1).padStart(2, '0')}`);
 if (studentPassword.length < 6) {
   console.error('La contraseña de los estudiantes debe tener al menos 6 caracteres (exigencia de Firebase).');
   process.exit(1);
@@ -75,7 +80,7 @@ async function main() {
         console.log(`${codigo}: ya existía (cuenta y perfil), no se cambió nada.`);
         continue;
       }
-      await setDoc(profileRef, { rol: 'estudiante', codigo, grupoId, tema: null });
+      await setDoc(profileRef, { rol: 'estudiante', codigo, grupoId, color: null, mascota: DEFAULT_MASCOTA });
       console.log(`${codigo}: ${created ? 'cuenta creada' : 'cuenta ya existía'} y perfil creado.`);
     } catch (error) {
       console.error(`${codigo}: no se pudo crear (${error.code ?? error.message}).`);
