@@ -5,7 +5,7 @@
     "rewrites": [{ "source": "**", "destination": "/index.html" }],
     "headers": [
       {
-        "source": "/@(sw.js|registerSW.js|index.html|manifest.webmanifest)",
+        "source": "**",
         "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
       },
       {
