@@ -13,8 +13,8 @@ import LoginPage from '../pages/LoginPage.jsx';
 import ChooseColorPage from '../pages/ChooseColorPage.jsx';
 import JuegosPage from '../features/juegos/JuegosPage.jsx';
 import JuegoPage from '../features/juegos/JuegoPage.jsx';
-import TeacherDashboardPage from '../pages/TeacherDashboardPage.jsx';
-import ResearcherDashboardPage from '../pages/ResearcherDashboardPage.jsx';
+import PanelDocente from '../features/paneles/docente/PanelDocente.jsx';
+import PanelInvestigadora from '../features/paneles/investigadora/PanelInvestigadora.jsx';
 
 function only(role, element) {
   return <RequireRole role={role}>{element}</RequireRole>;
@@ -46,10 +46,10 @@ export default function AppRoutes() {
         <Route path={ROUTES.games} element={<JuegosPage />} />
         <Route path={ROUTES.game} element={<JuegoPage />} />
       </Route>
-      <Route path={ROUTES.teacherDashboard} element={only(ROLES.teacher, <TeacherDashboardPage />)} />
+      <Route path={ROUTES.teacherDashboard} element={only(ROLES.teacher, <PanelDocente />)} />
       <Route
         path={ROUTES.researcherDashboard}
-        element={only(ROLES.researcher, <ResearcherDashboardPage />)}
+        element={only(ROLES.researcher, <PanelInvestigadora />)}
       />
       <Route path="*" element={<Navigate to={ROUTES.login} replace />} />
     </Routes>
