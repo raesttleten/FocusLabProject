@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ROUTES, routeTo } from '../../app/routes.js';
+import { useAuth } from '../../auth/AuthProvider.jsx';
 import { getCuento, getDia, segmentarResaltado } from '../contenido/cuentos.js';
 import { PORTADAS } from '../contenido/portadas.js';
 import EstudianteLayout from '../estudiante/EstudianteLayout.jsx';
@@ -8,6 +9,7 @@ import { numeroDeCuento } from '../estudiante/vistaInicio.js';
 import { ESTADO_DIA } from '../progreso/diaActual.js';
 import { ESTADO_CUENTO } from '../progreso/modelo.js';
 import { useProgreso } from '../progreso/ProgresoProvider.jsx';
+import { guardarLecturaPendiente } from '../progreso/pendientes.js';
 import { asegurarDia, registrarLectura } from '../progreso/repositorio.js';
 import { ahora } from '../progreso/reloj.js';
 import { formatearTiempo, useCronometroVisible } from './useCronometroVisible.js';
@@ -33,6 +35,8 @@ function Lectura({ cuento, progreso }) {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { segundos, leer } = useCronometroVisible();
+  const { alCerrarSesion } = useAuth();
+  const registrada = useRef(false);
   const { uid, diaActual, registroDia } = progreso;
   const { dia } = diaActual;
   const cuentoTerminado =
@@ -45,14 +49,29 @@ function Lectura({ cuento, progreso }) {
     if (!repaso) asegurarDia(uid, dia, registroDia, ahora());
   }, [repaso, uid, dia, registroDia]);
 
+  const registrar = useRef(null);
+  registrar.current = (alCerrarPagina = false) => {
+    const leidos = leer();
+    if (registrada.current || leidos < 1) return;
+    registrada.current = true;
+    const lectura = { dia, cuento: cuento.id, segundos: leidos, modo: repaso ? 'repaso' : 'primera', fecha: ahora() };
+    if (!alCerrarPagina || !guardarLecturaPendiente(uid, lectura)) registrarLectura(uid, lectura);
+  };
+
+  useEffect(() => {
+    const alSalir = () => registrar.current();
+    const alCerrarPagina = () => registrar.current(true);
+    const dejarCierre = alCerrarSesion(alSalir);
+    window.addEventListener('pagehide', alCerrarPagina);
+    return () => {
+      window.removeEventListener('pagehide', alCerrarPagina);
+      dejarCierre();
+      alSalir();
+    };
+  }, [alCerrarSesion]);
+
   function terminarLectura() {
-    registrarLectura(uid, {
-      dia,
-      cuento: cuento.id,
-      segundos: leer(),
-      modo: repaso ? 'repaso' : 'primera',
-      fecha: ahora(),
-    });
+    registrar.current();
     if (repaso) navigate(ROUTES.studentHome);
     else navigate(routeTo(ROUTES.questions, { cuentoId: cuento.id }), { replace: desdePreguntas });
   }

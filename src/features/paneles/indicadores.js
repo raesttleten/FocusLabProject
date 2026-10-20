@@ -80,7 +80,7 @@ export function aciertosPorComponente(respuestas) {
 }
 
 export function segundosDeLectura(lecturas) {
-  return suma(lecturas.map((l) => l.segundos));
+  return suma(lecturas.filter((l) => l.modo !== 'repaso').map((l) => l.segundos));
 }
 
 export function lecturaPorCuento(lecturas) {
@@ -178,6 +178,7 @@ export function filaDocente(estudiante, periodo, ahora) {
     diaEnQueVa: diaEnQueVa(estudiante, ahora),
     cuentosTerminados: cuentosTerminados(estudiante, filtrado.diasDelPeriodo),
     cuentosPosibles: filtrado.diasDelPeriodo.length * CUENTO_IDS.length,
+    lecturasPorDia: filtrado.diasDelPeriodo.map((dia) => ({ dia, terminadas: cuentosTerminados(estudiante, [dia]) })),
     puntos: calcularPuntos(filtrado.respuestas),
     primerIntento: aciertosPrimerIntento(filtrado.respuestas),
     segundosLectura: segundosDeLectura(filtrado.lecturas),

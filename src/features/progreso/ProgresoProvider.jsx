@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { useAuth } from '../../auth/AuthProvider.jsx';
 import { resumirProgreso } from './modelo.js';
-import { escucharProgreso } from './repositorio.js';
+import { tomarLecturasPendientes } from './pendientes.js';
+import { escucharProgreso, registrarLectura } from './repositorio.js';
 import { useAhora } from './useAhora.js';
 
 const ProgresoContext = createContext(null);
@@ -16,6 +17,7 @@ export function ProgresoProvider({ children }) {
 
   useEffect(() => {
     if (!uid) return undefined;
+    tomarLecturasPendientes(uid).forEach((lectura) => registrarLectura(uid, lectura));
     setDias(null);
     setRespuestas(null);
     return escucharProgreso(uid, { onDias: setDias, onRespuestas: setRespuestas, onError: setError });

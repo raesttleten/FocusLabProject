@@ -2,6 +2,7 @@
 
 :root {
   --escala: 1;
+  --escala-panel: 1;
   --vh: calc(1vh / var(--escala));
 }
 

@@ -7,7 +7,7 @@ import { metricasComunes } from '../../juegos/metricasComunes.js';
 import { useAhora } from '../../progreso/useAhora.js';
 import PanelLayout from '../PanelLayout.jsx';
 import { Cajita, Dato, EstadoCarga, Tarjeta, Ventana } from '../componentes.jsx';
-import { decimal, duracion, milisegundos, porcentaje } from '../formato.js';
+import { decimal, milisegundos, porcentaje, tiempo } from '../formato.js';
 import {
   COMPONENTE_CORTO,
   detalleInvestigadora,
@@ -24,7 +24,6 @@ import ExportarCsv from './ExportarCsv.jsx';
 const COLOR_ACTIVO = 'var(--panel-primario)';
 const COLOR_INACTIVO = 'var(--panel-inactivo)';
 const textoPeriodo = (periodo) => (periodo === TODO ? 'todo el piloto' : nombrePeriodo(periodo).toLowerCase());
-const minutos = (segundos) => `${duracion(segundos)} min`;
 
 function SelectorPeriodo({ valor, onCambiar }) {
   return (
@@ -92,14 +91,14 @@ function DistribucionTiempo({ segundosActivos, segundosInactivos, salidas, perio
           <li>
             <span className="panel-leyenda__color" style={{ background: COLOR_ACTIVO }} />
             <span>
-              Activo<small>{minutos(segundosActivos)}</small>
+              Activo<small>{tiempo(segundosActivos)}</small>
             </span>
             <strong>{porcentaje(pctActivo) ?? ''}</strong>
           </li>
           <li>
             <span className="panel-leyenda__color" style={{ background: COLOR_INACTIVO }} />
             <span>
-              Inactivo<small>{minutos(segundosInactivos)}</small>
+              Inactivo<small>{tiempo(segundosInactivos)}</small>
             </span>
             <strong>{pctActivo == null ? '' : porcentaje(100 - pctActivo)}</strong>
           </li>
@@ -129,8 +128,8 @@ function DetalleEstudiante({ estudiante, periodo, onCerrar }) {
       <div className="panel-cajitas">
         <Cajita etiqueta="Días terminados" valor={`${fila.diasTerminados} / ${fila.diasPosibles}`} />
         <Cajita etiqueta="Aciertos al primer intento" valor={porcentaje(fila.primerIntento.porcentaje)} />
-        <Cajita etiqueta="Tiempo activo" valor={conActividad ? minutos(fila.segundosActivos) : null} />
-        <Cajita etiqueta="Tiempo inactivo" valor={conActividad ? minutos(fila.segundosInactivos) : null} />
+        <Cajita etiqueta="Tiempo activo" valor={conActividad ? tiempo(fila.segundosActivos) : null} />
+        <Cajita etiqueta="Tiempo inactivo" valor={conActividad ? tiempo(fila.segundosInactivos) : null} />
         <Cajita etiqueta="Salió de la app" valor={conActividad ? (fila.salidas === 1 ? '1 vez' : `${fila.salidas} veces`) : null} />
       </div>
 
@@ -187,7 +186,7 @@ function DetalleEstudiante({ estudiante, periodo, onCerrar }) {
                 <td>{l.dia}</td>
                 <td className="panel-nowrap">Cuento {l.cuento.slice(1)}</td>
                 <td>{l.modo === 'repaso' ? 'Repaso' : 'Primera vez'}</td>
-                <td className="panel-num">{duracion(l.segundos)}</td>
+                <td className="panel-num">{tiempo(l.segundos)}</td>
               </tr>
             ))}
           </tbody>
@@ -218,7 +217,7 @@ function DetalleEstudiante({ estudiante, periodo, onCerrar }) {
                   <tr key={i}>
                     <td>{getJuego(j.juego)?.nombre ?? j.juego}</td>
                     <td>{diaDeEstudio(estudiante.dias, j.fechaInicio) ?? ''}</td>
-                    <td className="panel-num">{duracion(j.duracion)}</td>
+                    <td className="panel-num">{tiempo(j.duracion)}</td>
                     <td className="panel-num"><Dato valor={m.aciertos} /></td>
                     <td className="panel-num"><Dato valor={m.errores} /></td>
                     <td className="panel-num"><Dato valor={m.omisiones} /></td>
@@ -280,7 +279,7 @@ export default function PanelInvestigadora() {
               valor={porcentaje(resumen.primerIntento.porcentaje)}
               detalle={`${resumen.primerIntento.aciertos} de ${resumen.primerIntento.total} preguntas con respuesta correcta`}
             />
-            <Tarjeta etiqueta="Tiempo promedio de lectura por cuento" valor={duracion(resumen.lecturaPromedio)} detalle="min, primera lectura" />
+            <Tarjeta etiqueta="Tiempo promedio de lectura por cuento" valor={tiempo(resumen.lecturaPromedio)} detalle="sin contar los repasos" />
           </div>
 
           <div className="panel-fila-cards">
@@ -341,9 +340,9 @@ export default function PanelInvestigadora() {
                         </td>
                       ))}
                       <td className="panel-num"><Dato valor={decimal(fila.promedioIntentos)} /></td>
-                      <td className="panel-num"><Dato valor={fila.segundosLectura ? duracion(fila.segundosLectura) : null} /></td>
-                      <td className="panel-num"><Dato valor={fila.segundosActivos ? duracion(fila.segundosActivos) : null} /></td>
-                      <td className="panel-num"><Dato valor={fila.segundosActivos || fila.segundosInactivos ? duracion(fila.segundosInactivos) : null} /></td>
+                      <td className="panel-num"><Dato valor={fila.segundosLectura ? tiempo(fila.segundosLectura) : null} /></td>
+                      <td className="panel-num"><Dato valor={fila.segundosActivos ? tiempo(fila.segundosActivos) : null} /></td>
+                      <td className="panel-num"><Dato valor={fila.segundosActivos || fila.segundosInactivos ? tiempo(fila.segundosInactivos) : null} /></td>
                       <td className="panel-num">{fila.partidas}</td>
                       <td className="panel-num"><Dato valor={decimal(fila.juegos.aciertos)} /></td>
                       <td className="panel-num"><Dato valor={decimal(fila.juegos.errores)} /></td>

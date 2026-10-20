@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calcularEscala } from './escala.js';
+import { calcularEscala, calcularEscalaPanel } from './escala.js';
 
 describe('escala de la página', () => {
   it('en una pantalla grande se ve al tamaño del diseño', () => {
@@ -18,5 +18,20 @@ describe('escala de la página', () => {
   it('en tabletas táctiles y pantallas angostas no cambia', () => {
     expect(calcularEscala({ ancho: 1024, alto: 700, punteroFino: false })).toBe(1);
     expect(calcularEscala({ ancho: 780, alto: 500, punteroFino: true })).toBe(1);
+  });
+});
+
+describe('escala de los paneles de docente e investigadora', () => {
+  it('se ajusta solo al ancho, sin importar lo bajita que sea la pantalla', () => {
+    expect(calcularEscalaPanel({ ancho: 1366, punteroFino: true })).toBeCloseTo(1366 / 1536, 3);
+    expect(calcularEscalaPanel({ ancho: 1920, punteroFino: true })).toBe(1);
+  });
+
+  it('nunca baja de 0,8 para que la letra se lea bien', () => {
+    expect(calcularEscalaPanel({ ancho: 1024, punteroFino: true })).toBe(0.8);
+  });
+
+  it('en tabletas táctiles no cambia', () => {
+    expect(calcularEscalaPanel({ ancho: 1280, punteroFino: false })).toBe(1);
   });
 });

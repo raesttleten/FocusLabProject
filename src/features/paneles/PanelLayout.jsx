@@ -1,50 +1,29 @@
-import { useEffect, useRef, useState } from 'react';
 import { useAuth } from '../../auth/AuthProvider.jsx';
 import { auth } from '../../services/firebase.js';
 import logo from '../../assets/logo_focuslap.png';
 import './Paneles.css';
 
-function MenuCuenta() {
+function Cuenta() {
   const { signOut } = useAuth();
-  const [abierto, setAbierto] = useState(false);
-  const contenedor = useRef(null);
   const correo = auth?.currentUser?.email ?? '';
 
-  useEffect(() => {
-    if (!abierto) return undefined;
-    const cerrar = (event) => {
-      if (event.type === 'keydown' && event.key !== 'Escape') return;
-      if (event.type === 'pointerdown' && contenedor.current?.contains(event.target)) return;
-      setAbierto(false);
-    };
-    document.addEventListener('pointerdown', cerrar);
-    document.addEventListener('keydown', cerrar);
-    return () => {
-      document.removeEventListener('pointerdown', cerrar);
-      document.removeEventListener('keydown', cerrar);
-    };
-  }, [abierto]);
-
   return (
-    <div className="panel-cuenta" ref={contenedor}>
-      <button
-        type="button"
-        className="panel-avatar"
-        aria-label="Cuenta"
-        aria-expanded={abierto}
-        aria-haspopup="menu"
-        onClick={() => setAbierto((valor) => !valor)}
-      >
+    <div className="panel-cuenta">
+      <span className="panel-avatar" title={correo} aria-hidden="true">
         {correo.charAt(0).toUpperCase()}
+      </span>
+      <button type="button" className="panel-boton panel-boton--secundario panel-salir" onClick={signOut}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 17l5-5-5-5M15 12H4"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        Cerrar sesión
       </button>
-      {abierto && (
-        <div className="panel-cuenta__menu" role="menu">
-          {correo && <p className="panel-cuenta__correo">{correo}</p>}
-          <button type="button" role="menuitem" onClick={signOut}>
-            Cerrar sesión
-          </button>
-        </div>
-      )}
     </div>
   );
 }
@@ -65,7 +44,7 @@ export default function PanelLayout({ icono, etiquetaIcono, titulo, subtitulo, a
         </div>
         <div className="panel-header__acciones">
           {acciones}
-          <MenuCuenta />
+          <Cuenta />
         </div>
       </header>
       <main className="panel-contenido">{children}</main>

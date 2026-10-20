@@ -1,12 +1,14 @@
 import { aFecha, fechaColombia, ZONA_HORARIA } from '../progreso/fechas.js';
 
-export function duracion(segundos) {
+export function tiempo(segundos) {
   if (!Number.isFinite(segundos)) return null;
   const total = Math.round(segundos);
   const horas = Math.floor(total / 3600);
   const minutos = Math.floor((total % 3600) / 60);
-  const resto = String(total % 60).padStart(2, '0');
-  return horas ? `${horas}:${String(minutos).padStart(2, '0')}:${resto}` : `${minutos}:${resto}`;
+  const resto = total % 60;
+  if (horas) return minutos ? `${horas} h ${minutos} min` : `${horas} h`;
+  if (minutos) return resto ? `${minutos} min ${resto} s` : `${minutos} min`;
+  return `${resto} s`;
 }
 
 export function porcentaje(valor) {

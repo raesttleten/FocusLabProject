@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { metricasComunes } from '../juegos/metricasComunes.js';
 import { aCsv, filasJuegos, filasLecturas, filasRespuestas } from './csv.js';
+import { tiempo } from './formato.js';
 import {
   aciertosPrimerIntento,
   detalleDocente,
@@ -87,11 +88,13 @@ describe('indicadores de los paneles', () => {
   it('fila del docente con todo el piloto y con un solo día', () => {
     const ahora = h('2026-10-20T12:00:00');
     const todo = filaDocente(estudianteA(), TODO, ahora);
-    expect(todo).toMatchObject({ codigo: 'E01', cuentosTerminados: 3, cuentosPosibles: 6, puntos: 70, segundosLectura: 500 });
+    expect(todo).toMatchObject({ codigo: 'E01', cuentosTerminados: 3, cuentosPosibles: 6, puntos: 70, segundosLectura: 440 });
+    expect(todo.lecturasPorDia).toEqual([{ dia: 1, terminadas: 2 }, { dia: 2, terminadas: 1 }, { dia: 3, terminadas: 0 }]);
     expect(todo.diaEnQueVa).toEqual({ dia: 2, texto: 'Día 2', estado: 'en-curso' });
     expect(todo.ultimoIngreso.getTime()).toBe(h('2026-10-20T10:00:00').getTime());
     const dia1 = filaDocente(estudianteA(), 1, ahora);
-    expect(dia1).toMatchObject({ cuentosTerminados: 2, cuentosPosibles: 2, puntos: 40, segundosLectura: 300 });
+    expect(dia1).toMatchObject({ cuentosTerminados: 2, cuentosPosibles: 2, puntos: 40, segundosLectura: 240 });
+    expect(dia1.lecturasPorDia).toEqual([{ dia: 1, terminadas: 2 }]);
     expect(dia1.primerIntento.porcentaje).toBe(75);
   });
 
@@ -177,5 +180,15 @@ describe('exportación a CSV', () => {
   it('el CSV escapa comas y comillas y abre con BOM para Excel y SPSS', () => {
     const csv = aCsv(['a', 'b', 'c'], [{ a: 'x, y', b: 'dijo "hola"', c: true }, { a: null, b: 3.5, c: false }]);
     expect(csv).toBe('﻿a,b,c\r\n"x, y","dijo ""hola""",1\r\n,3.5,0\r\n');
+  });
+});
+
+describe('formato de tiempo en los paneles', () => {
+  it('se lee en minutos y segundos', () => {
+    expect(tiempo(221)).toBe('3 min 41 s');
+    expect(tiempo(45)).toBe('45 s');
+    expect(tiempo(120)).toBe('2 min');
+    expect(tiempo(3900)).toBe('1 h 5 min');
+    expect(tiempo(null)).toBe(null);
   });
 });

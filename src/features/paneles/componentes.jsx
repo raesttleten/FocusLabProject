@@ -48,15 +48,6 @@ export function Chip({ estado, children }) {
   );
 }
 
-export function Barra({ valor, maximo, tono = 'principal' }) {
-  const ancho = maximo > 0 ? Math.min(100, (valor / maximo) * 100) : 0;
-  return (
-    <span className="panel-barra" aria-hidden="true">
-      <span className={`panel-barra__relleno panel-barra__relleno--${tono}`} style={{ width: `${ancho}%` }} />
-    </span>
-  );
-}
-
 export function Ventana({ abierta, onCerrar, titulo, etiqueta, subtitulo, ancho = 760, pie, children }) {
   const dialogo = useRef(null);
 

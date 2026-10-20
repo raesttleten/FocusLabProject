@@ -4,8 +4,8 @@ import iconoInicio from '../../../assets/paneles/icono-inicio.svg';
 import { getJuego } from '../../juegos/catalogo.js';
 import { useAhora } from '../../progreso/useAhora.js';
 import PanelLayout from '../PanelLayout.jsx';
-import { Barra, Cajita, Chip, Dato, EstadoCarga, FiltroDias, Tarjeta, Ventana } from '../componentes.jsx';
-import { duracion, fechaDeHoy, momento, porcentaje } from '../formato.js';
+import { Cajita, Chip, Dato, EstadoCarga, FiltroDias, Tarjeta, Ventana } from '../componentes.jsx';
+import { fechaDeHoy, momento, porcentaje, tiempo } from '../formato.js';
 import { detalleDocente, filaDocente, nombrePeriodo, resumenDocente, TODO } from '../indicadores.js';
 import { usePanelDatos } from '../usePanelDatos.js';
 
@@ -15,6 +15,23 @@ function textoIntentos(p) {
   if (!p.intentos) return 'sin responder';
   if (p.opinion) return p.completada ? 'opinión' : 'sin responder';
   return p.completada ? intentos(p.intentos) : `${intentos(p.intentos)}, sin acertar`;
+}
+
+function LecturasPorDia({ fila }) {
+  return (
+    <span className="panel-lecturas" aria-label={`${fila.cuentosTerminados} de ${fila.cuentosPosibles} lecturas terminadas`}>
+      {fila.lecturasPorDia.map(({ dia, terminadas }) => (
+        <span key={dia} className={`panel-lecturas__dia${terminadas === 2 ? ' completo' : ''}`} aria-hidden="true">
+          Día {dia}
+          <span className="panel-lecturas__puntos">
+            {[0, 1].map((i) => (
+              <span key={i} className={i < terminadas ? 'lleno' : ''} />
+            ))}
+          </span>
+        </span>
+      ))}
+    </span>
+  );
 }
 
 const textoPeriodo = (periodo) => (periodo === TODO ? 'todo el piloto' : nombrePeriodo(periodo).toLowerCase());
@@ -34,9 +51,9 @@ function DetalleEstudiante({ estudiante, ahora, onCerrar }) {
       subtitulo={`Último ingreso: ${momento(fila.ultimoIngreso, ahora) ?? 'todavía no ha entrado'}`}
     >
       <div className="panel-cajitas">
-        <Cajita etiqueta="Cuentos terminados" valor={`${fila.cuentosTerminados} / ${fila.cuentosPosibles}`} />
+        <Cajita etiqueta="Lecturas terminadas" valor={`${fila.cuentosTerminados} de ${fila.cuentosPosibles}`} />
         <Cajita etiqueta="Aciertos al primer intento" valor={porcentaje(fila.primerIntento.porcentaje)} />
-        <Cajita etiqueta="Tiempo de lectura" valor={duracion(fila.segundosLectura)} />
+        <Cajita etiqueta="Tiempo de lectura" valor={fila.segundosLectura ? tiempo(fila.segundosLectura) : null} />
         <Cajita etiqueta="Juegos jugados" valor={String(partidas)} />
       </div>
 
@@ -64,7 +81,7 @@ function DetalleEstudiante({ estudiante, ahora, onCerrar }) {
                       <td className="panel-nowrap">Cuento {cuento.cuento.slice(1)}</td>
                       <td>{cuento.terminado ? 'Terminado' : 'Pendiente'}</td>
                       <td>
-                        <Dato valor={duracion(cuento.segundosLectura)} />
+                        <Dato valor={tiempo(cuento.segundosLectura)} />
                       </td>
                       <td>
                         <ul className="panel-intentos">
@@ -123,9 +140,9 @@ export default function PanelDocente() {
               detalle={resumen.total - resumen.activosHoy === 1 ? '1 aún no ha entrado' : `${resumen.total - resumen.activosHoy} aún no han entrado`}
             />
             <Tarjeta
-              etiqueta="Cuentos terminados hoy"
+              etiqueta="Lecturas terminadas hoy"
               valor={`${resumen.cuentosHoy} / ${resumen.cuentosPosiblesHoy}`}
-              detalle="2 cuentos por estudiante"
+              detalle="cada estudiante lee 2 cuentos por día"
             />
             <Tarjeta
               etiqueta="Aciertos al primer intento"
@@ -134,8 +151,8 @@ export default function PanelDocente() {
             />
             <Tarjeta
               etiqueta="Tiempo promedio de lectura"
-              valor={duracion(resumen.lecturaPromedio)}
-              detalle={`min por cuento, ${textoPeriodo(periodo)}`}
+              valor={tiempo(resumen.lecturaPromedio)}
+              detalle={`por cuento, ${textoPeriodo(periodo)}`}
             />
           </div>
 
@@ -153,7 +170,7 @@ export default function PanelDocente() {
                   <tr>
                     <th scope="col">Estudiante</th>
                     <th scope="col">Día en que va</th>
-                    <th scope="col">Cuentos terminados</th>
+                    <th scope="col">Lecturas terminadas</th>
                     <th scope="col">Puntos</th>
                     <th scope="col">Aciertos al primer intento</th>
                     <th scope="col">Tiempo de lectura</th>
@@ -180,21 +197,14 @@ export default function PanelDocente() {
                         <Chip estado={fila.diaEnQueVa.estado}>{fila.diaEnQueVa.texto}</Chip>
                       </td>
                       <td>
-                        <span className="panel-progreso">
-                          <Barra
-                            valor={fila.cuentosTerminados}
-                            maximo={fila.cuentosPosibles}
-                            tono={fila.cuentosTerminados === fila.cuentosPosibles ? 'exito' : 'principal'}
-                          />
-                          <span className="panel-progreso__texto">{fila.cuentosTerminados}/{fila.cuentosPosibles}</span>
-                        </span>
+                        <LecturasPorDia fila={fila} />
                       </td>
                       <td className="panel-num">{fila.puntos}</td>
                       <td className="panel-num panel-fuerte">
                         <Dato valor={porcentaje(fila.primerIntento.porcentaje)} />
                       </td>
                       <td className="panel-num">
-                        <Dato valor={fila.segundosLectura ? duracion(fila.segundosLectura) : null} />
+                        <Dato valor={fila.segundosLectura ? tiempo(fila.segundosLectura) : null} />
                       </td>
                       <td className="panel-suave">{momento(fila.ultimoIngreso, ahora) ?? 'Nunca'}</td>
                     </tr>
