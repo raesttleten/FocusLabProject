@@ -7,8 +7,18 @@
   padding: 39px 40px;
 }
 
+.lectura-marco {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
 .lectura-texto {
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
+  transition: filter 0.4s ease, opacity 0.4s ease;
   padding: 39px 47px;
   background: #fbfafd;
   border: 1px solid var(--color-border);
@@ -16,6 +26,42 @@
   font-size: 22px;
   line-height: 38px;
   color: var(--color-text);
+}
+
+.lectura-texto--bloqueado {
+  overflow: hidden;
+  filter: blur(5px) grayscale(1);
+  opacity: 0.4;
+  user-select: none;
+  pointer-events: none;
+}
+
+.lectura-aviso {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(calc(100% - 48px), 440px);
+  padding: 26px 30px;
+  transform: translate(-50%, -50%);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.lectura-aviso__titulo {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.lectura-aviso__texto {
+  margin: 10px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-text-muted);
 }
 
 .lectura-texto:focus-visible {
@@ -93,6 +139,11 @@
   background: var(--color-primary-soft);
 }
 
+.lectura-buscar--pendiente {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 0;
+}
+
 .lectura-buscar__titulo {
   margin: 0;
   font-size: 12px;
@@ -137,6 +188,12 @@
 .lectura-panel__boton {
   flex: none;
   width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lectura-texto {
+    transition: none;
+  }
 }
 
 @media (max-width: 1100px) {

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ROUTES, routeTo } from '../../app/routes.js';
 import { useAuth } from '../../auth/AuthProvider.jsx';
@@ -34,9 +34,9 @@ function Parrafo({ texto }) {
 function Lectura({ cuento, progreso }) {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { segundos, leer } = useCronometroVisible();
   const { alCerrarSesion } = useAuth();
   const registrada = useRef(false);
+  const texto = useRef(null);
   const { uid, diaActual, registroDia } = progreso;
   const { dia } = diaActual;
   const cuentoTerminado =
@@ -44,6 +44,14 @@ function Lectura({ cuento, progreso }) {
     diaActual.estado !== ESTADO_DIA.inProgress;
   const repaso = cuentoTerminado || state?.repaso === true;
   const desdePreguntas = !repaso && state?.desdePreguntas === true;
+  const [instruccionesLeidas, setInstruccionesLeidas] = useState(repaso || desdePreguntas);
+  const bloqueado = !instruccionesLeidas;
+  const { segundos, leer } = useCronometroVisible(instruccionesLeidas);
+
+  function leerInstrucciones() {
+    setInstruccionesLeidas(true);
+    requestAnimationFrame(() => texto.current?.focus());
+  }
 
   useEffect(() => {
     if (!repaso) asegurarDia(uid, dia, registroDia, ahora());
@@ -85,11 +93,28 @@ function Lectura({ cuento, progreso }) {
   return (
     <EstudianteLayout titulo={cuento.titulo} subtitulo={`Cuento ${numeroDeCuento(cuento.id)} de 2 · Día ${dia}`}>
       <div className="student-card lectura">
-        <article className="lectura-texto" tabIndex={0} aria-label={`Texto de ${cuento.titulo}`}>
-          {cuento.parrafos.map((parrafo, i) => (
-            <Parrafo key={i} texto={parrafo} />
-          ))}
-        </article>
+        <div className="lectura-marco">
+          <article
+            ref={texto}
+            className={`lectura-texto${bloqueado ? ' lectura-texto--bloqueado' : ''}`}
+            tabIndex={bloqueado ? -1 : 0}
+            aria-label={`Texto de ${cuento.titulo}`}
+            aria-hidden={bloqueado || undefined}
+            {...(bloqueado ? { inert: '' } : {})}
+          >
+            {cuento.parrafos.map((parrafo, i) => (
+              <Parrafo key={i} texto={parrafo} />
+            ))}
+          </article>
+          {bloqueado && (
+            <div className="lectura-aviso" role="status">
+              <p className="lectura-aviso__titulo">Primero lee lo que vas a buscar</p>
+              <p className="lectura-aviso__texto">
+                Está en el cuadro "Hoy vas a buscar". Cuando lo leas, toca el botón "Ya lo leí" y aparecerá el cuento.
+              </p>
+            </div>
+          )}
+        </div>
 
         <aside className="lectura-panel">
           <div className="lectura-panel__info">
@@ -97,7 +122,7 @@ function Lectura({ cuento, progreso }) {
             <span className="student-chip lectura-panel__chip">{repaso ? 'LEER OTRA VEZ' : 'ANTES DE RESPONDER'}</span>
             <h2 className="lectura-panel__titulo">Lee con calma</h2>
             <p className="lectura-panel__ayuda">Desliza el texto hacia abajo para seguir leyendo.</p>
-            <div className="lectura-buscar">
+            <div className={`lectura-buscar${bloqueado ? ' lectura-buscar--pendiente' : ''}`}>
               <p className="lectura-buscar__titulo">HOY VAS A BUSCAR</p>
               {getDia(dia).explicacion.map((linea, i) => (
                 <p key={i} className="lectura-buscar__texto">
@@ -110,9 +135,15 @@ function Lectura({ cuento, progreso }) {
             <p className="lectura-tiempo__etiqueta">Tiempo de lectura</p>
             <p className="lectura-tiempo__valor">{formatearTiempo(segundos)}</p>
           </div>
-          <button type="button" className="student-button lectura-panel__boton" onClick={terminarLectura}>
-            {textoBoton}
-          </button>
+          {bloqueado ? (
+            <button key="instrucciones" type="button" className="student-button lectura-panel__boton" onClick={leerInstrucciones}>
+              Ya lo leí
+            </button>
+          ) : (
+            <button key="leer" type="button" className="student-button lectura-panel__boton" onClick={terminarLectura}>
+              {textoBoton}
+            </button>
+          )}
         </aside>
       </div>
     </EstudianteLayout>

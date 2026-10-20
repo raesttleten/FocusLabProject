@@ -9,9 +9,10 @@ export function formatearTiempo(segundos) {
   return `${String(minutos).padStart(2, '0')}:${String(segundos % 60).padStart(2, '0')}`;
 }
 
-export function useCronometroVisible() {
+export function useCronometroVisible(activo = true) {
   const acumulado = useRef(0);
-  const desde = useRef(visible() ? performance.now() : null);
+  const desde = useRef(activo && visible() ? performance.now() : null);
+  const encendido = useRef(activo);
   const [segundos, setSegundos] = useState(0);
 
   const leer = useCallback(() => {
@@ -20,9 +21,19 @@ export function useCronometroVisible() {
   }, []);
 
   useEffect(() => {
+    encendido.current = activo;
+    if (activo && visible() && desde.current === null) desde.current = performance.now();
+    if (!activo && desde.current !== null) {
+      acumulado.current += performance.now() - desde.current;
+      desde.current = null;
+    }
+    setSegundos(leer());
+  }, [activo, leer]);
+
+  useEffect(() => {
     const alCambiar = () => {
       if (visible()) {
-        if (desde.current === null) desde.current = performance.now();
+        if (encendido.current && desde.current === null) desde.current = performance.now();
       } else if (desde.current !== null) {
         acumulado.current += performance.now() - desde.current;
         desde.current = null;
