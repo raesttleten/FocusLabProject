@@ -43,9 +43,9 @@
     {
       "id": "c1",
       "titulo": "El último penalti",
-      "palabras_aprox": 317,
+      "palabras_aprox": 305,
       "parrafos": [
-        "Mateo tenía doce años y era el arquero del equipo de microfútbol de su colegio. Ese sábado era la final del torneo del barrio, contra el colegio de la otra cuadra. Desde temprano, su abuela le preparó un caldo de costilla y le dijo: \"Mijo, coma, que con hambre nadie ataja\".",
+        "Mateo tenía doce años y era el arquero del equipo de microfútbol de su colegio. Ese sábado era la final del torneo del barrio. Desde temprano, su abuela le preparó un caldo de costilla y le dijo: \"Mijo, coma, que la comida es importante\".",
         "La cancha estaba llena. Había vecinos con banderas, un señor vendiendo obleas con arequipe y hasta un perro que corría detrás de las palomas. Mateo miraba para todos lados. Oía los gritos, los pitos y la música de un parlante. Cada vez que el balón llegaba a su arco, él estaba pensando en otra cosa.",
         "En el primer tiempo le metieron dos goles. En el descanso, la profe Liliana se sentó a su lado.",
         "\"Mateo, ¿usted qué está mirando?\", le preguntó.",
@@ -53,7 +53,7 @@
         "\"Lo importante no es lo que pasa afuera de la cancha, sino el balón. Escoja una sola cosa y mírela con ==toda su atención==.\"",
         "En el segundo tiempo, Mateo le hizo caso. Dejó de mirar las obleas, el perro y el parlante. Solo miraba el balón: cómo giraba y hacia dónde apuntaba el pie del delantero. Atajó un tiro, y luego otro. Sofía le pasó el balón a Juan, y Juan metió un gol. Más tarde, Sofía hizo el empate.",
         "El partido terminó 2 a 2 y se fue a penaltis. En el último, el delantero más alto del otro equipo tomó impulso. La gente gritaba, pero Mateo ya no oía nada. Vio el pie, vio el balón y se lanzó a la derecha. ¡Lo atajó!",
-        "Esa noche, mientras comía arepa con queso, Mateo le contó todo a su abuela: \"Al principio quería ver todo y no veía nada. Cuando me fijé en una sola cosa, todo me salió mejor\".",
+        "Esa noche, Mateo le contó todo a su abuela: \"Al principio quería ver todo y no veía nada. Cuando me fijé en una sola cosa, todo me salió mejor\".",
         "Mateo aprendió que poner la atención en lo que de verdad importa ayuda a lograr lo que uno se propone."
       ],
       "preguntas": {
@@ -88,7 +88,7 @@
             "tipo": "Palabras pista",
             "enunciado": "¿Qué oración del cuento usa la pista \"lo importante\"?",
             "opciones": [
-              "\"Mijo, coma, que con hambre nadie ataja.\"",
+              "\"Mijo, coma, que la comida es importante.\"",
               "\"Lo importante no es lo que pasa afuera de la cancha, sino el balón.\"",
               "\"Hay mucho ruido.\"",
               "\"¡Lo atajó!\""
@@ -102,7 +102,7 @@
             "opciones": [
               "caldo de costilla",
               "toda su atención",
-              "arepa con queso",
+              "obleas con arequipe",
               "el último penalti"
             ],
             "correcta": 1,
@@ -151,7 +151,7 @@
             "enunciado": "¿Qué frase resume mejor todo el cuento con pocas palabras?",
             "opciones": [
               "El partido terminó 2 a 2",
-              "Mateo comió arepa con queso",
+              "La abuela preparó caldo de costilla",
               "Concentrarse en lo importante ayuda a lograr las metas",
               "La cancha estaba llena de gente"
             ],
@@ -164,14 +164,14 @@
     {
       "id": "c2",
       "titulo": "La huerta del salón",
-      "palabras_aprox": 261,
+      "palabras_aprox": 263,
       "parrafos": [
-        "En el colegio de Valentina, en Usme, había un patio pequeño lleno de piedras y bolsas viejas. Un lunes, el profe Andrés llegó con una caja de semillas: cilantro, lechuga, fríjol y tomate.",
+        "En el colegio de Valentina había un patio pequeño lleno de piedras y bolsas viejas. Un lunes, el profe Andrés llegó con una caja de semillas: cilantro, lechuga, fríjol y tomate.",
         "\"Vamos a hacer una huerta\", dijo. \"Pero les advierto: las plantas no crecen de un día para otro\".",
-        "Entre todos sacaron las piedras, recogieron la basura y prepararon la tierra con abono. Valentina sembró fríjoles. Samuel, su compañero de puesto, sembró lechugas. Ese día llovió tanto que a todos se les mojaron los zapatos, y la señora de la cafetería les regaló aromática.",
+        "Entre todos sacaron las piedras, recogieron la basura y prepararon la tierra con abono. Valentina sembró fríjoles. Samuel, su compañero de puesto, sembró lechugas. Ese día llovió tanto que a todos se les mojaron los zapatos, y la señora de la cafetería les regaló chocolate caliente.",
         "Pasó una semana y no salía nada. Samuel se aburrió.",
         "\"Esto no sirve para nada\", dijo, y dejó de regar.",
-        "Valentina, en cambio, siguió yendo cada mañana. Regaba un poquito, quitaba la maleza y miraba la tierra con cuidado. Un día vio algo verde y pequeñito asomándose. ¡Era su primer fríjol!",
+        "Valentina, en cambio, iba cada mañana. Regaba un poquito, quitaba las plantas que no habían sembrado y miraba la tierra con cuidado. Un día vio algo verde y pequeñito asomándose. ¡Era su primer fríjol!",
         "Entonces Valentina le enseñó a Samuel cómo cuidar las plantas. Le explicó que no había que echarles mucha agua, que había que quitar las hojas secas y que, sobre todo, había que tener ==paciencia==. Samuel volvió a regar sus lechugas, y a las tres semanas también salieron.",
         "Al final del periodo, la huerta estaba llena de colores. Con lo que cosecharon, prepararon una ensalada para todo el salón. El profe Andrés les dijo: \"Lo relevante no es la ensalada, sino lo que aprendieron: cuidar algo todos los días, aunque no se vean resultados enseguida\".",
         "La huerta les enseñó que las cosas valiosas toman tiempo y que, con constancia y paciencia, el esfuerzo da frutos."
@@ -182,9 +182,9 @@
             "tipo": "Tema",
             "enunciado": "¿De qué trata el cuento? Escoge la opción que lo dice en pocas palabras.",
             "opciones": [
-              "La lluvia en Usme",
+              "Un día de mucha lluvia",
               "La paciencia al cuidar una huerta",
-              "La aromática de la cafetería",
+              "El chocolate caliente de la cafetería",
               "Los zapatos mojados"
             ],
             "correcta": 1,
@@ -222,7 +222,7 @@
             "opciones": [
               "semillas",
               "ensalada",
-              "maleza",
+              "abono",
               "paciencia"
             ],
             "correcta": 3,
@@ -246,8 +246,8 @@
             "tipo": "Quitar lo que sobra",
             "enunciado": "¿Qué oración podríamos quitar sin que el cuento pierda su idea?",
             "opciones": [
-              "\"Valentina siguió yendo cada mañana.\"",
-              "\"La señora de la cafetería les regaló aromática.\"",
+              "\"Valentina iba cada mañana.\"",
+              "\"La señora de la cafetería les regaló chocolate caliente.\"",
               "\"Había que tener paciencia.\"",
               "\"Samuel volvió a regar sus lechugas.\""
             ],
