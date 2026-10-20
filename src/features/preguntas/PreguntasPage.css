@@ -1,5 +1,5 @@
 .preguntas {
-  min-height: calc(calc(100 * var(--vh)) - 168px);
+  min-height: calc(100 * var(--vh) - 168px);
   padding: 39px 32px 48px;
 }
 

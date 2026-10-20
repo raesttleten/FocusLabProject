@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: calc(calc(100 * var(--vh)) - 48px);
+  height: calc(100 * var(--vh) - 48px);
   min-height: 420px;
   padding: 12px 0 24px;
   background: var(--color-surface);
@@ -254,6 +254,6 @@
 
   .student-nav {
     top: 16px;
-    height: calc(calc(100 * var(--vh)) - 32px);
+    height: calc(100 * var(--vh) - 32px);
   }
 }

@@ -18,12 +18,11 @@
   --panel-inactivo: #dcb7a3;
   --panel-sombra: drop-shadow(0 2px 4px rgba(26, 26, 20, 0.04));
 
-  zoom: calc(1 / var(--escala));
   display: grid;
   grid-template-columns: 72px minmax(0, 1fr);
   grid-template-rows: auto 1fr;
   column-gap: 28px;
-  min-height: 100vh;
+  min-height: calc(100 * var(--vh));
   padding: 24px;
   background: var(--panel-fondo);
   color: var(--panel-texto);
@@ -45,7 +44,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: calc(100vh - 48px);
+  height: calc(100 * var(--vh) - 48px);
   min-height: 300px;
   padding: 12px 0 24px;
   background: var(--panel-superficie);
@@ -695,7 +694,7 @@
 
 .panel-ventana {
   width: min(calc(100vw - 32px), var(--ancho-ventana));
-  max-height: calc(100vh - 48px);
+  max-height: calc(100 * var(--vh) - 48px);
   padding: 0;
   border: 0;
   border-radius: 32px;
@@ -712,7 +711,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  max-height: calc(100vh - 48px);
+  max-height: calc(100 * var(--vh) - 48px);
 }
 
 .panel-ventana__x {
