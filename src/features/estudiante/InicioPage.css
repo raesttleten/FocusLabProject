@@ -231,10 +231,18 @@
 
 .juego-fila__icono {
   flex: none;
-  width: 56px;
+  width: 96px;
   height: 56px;
+  overflow: hidden;
   border-radius: 14px;
   background: var(--color-primary-soft);
+}
+
+.juego-fila__icono .vista-previa {
+  width: 232px;
+  height: 135px;
+  border-radius: 0;
+  zoom: 0.414;
 }
 
 .juego-fila__info {

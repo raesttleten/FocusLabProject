@@ -40,7 +40,7 @@ describe('estadoMascota', () => {
 
 describe('visualMascota', () => {
   it('con frío: imagen frio, luz al 30 % y sin animación', () => {
-    expect(visualMascota(ESTADO_MASCOTA.cold)).toEqual({ imagen: 'frio', luz: LUZ_FRIO, animacion: 'ninguna' });
+    expect(visualMascota(ESTADO_MASCOTA.cold)).toEqual({ imagen: 'frio', luz: LUZ_FRIO, animacion: 'temblor' });
   });
 
   it('tranquila: imagen prenda, sin animación', () => {

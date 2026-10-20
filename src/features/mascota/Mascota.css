@@ -51,6 +51,10 @@
   animation: mascota-rebote 0.9s ease-in-out infinite alternate;
 }
 
+.mascota--temblor .mascota__cuerpo {
+  animation: mascota-temblor 2.6s ease-in-out infinite;
+}
+
 @keyframes mascota-luz {
   from {
     opacity: var(--luz-inicial);
@@ -84,6 +88,24 @@
   }
   to {
     transform: translateY(-8px);
+  }
+}
+
+@keyframes mascota-temblor {
+  0%,
+  30%,
+  100% {
+    transform: translateX(0) rotate(0);
+  }
+  4%,
+  12%,
+  20% {
+    transform: translateX(-3px) rotate(-1.5deg);
+  }
+  8%,
+  16%,
+  24% {
+    transform: translateX(3px) rotate(1.5deg);
   }
 }
 

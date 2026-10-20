@@ -45,7 +45,7 @@ export function estadoMascota({ pantalla, puntosHoy, mostrarTransicion = false, 
 export function visualMascota(estado) {
   switch (estado) {
     case ESTADO_MASCOTA.cold:
-      return { imagen: 'frio', luz: LUZ_FRIO, animacion: 'ninguna' };
+      return { imagen: 'frio', luz: LUZ_FRIO, animacion: 'temblor' };
     case ESTADO_MASCOTA.transition:
       return { imagenInicial: 'frio', imagen: 'calor', luzInicial: LUZ_FRIO, luz: LUZ_CALOR, animacion: 'transicion' };
     case ESTADO_MASCOTA.happy:
