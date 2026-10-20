@@ -1,9 +1,18 @@
 @import './themes.css';
 
+:root {
+  --escala: 1;
+  --vh: calc(1vh / var(--escala));
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+#root {
+  zoom: var(--escala);
 }
 
 body {

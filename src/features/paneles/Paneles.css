@@ -18,6 +18,7 @@
   --panel-inactivo: #dcb7a3;
   --panel-sombra: drop-shadow(0 2px 4px rgba(26, 26, 20, 0.04));
 
+  zoom: calc(1 / var(--escala));
   display: grid;
   grid-template-columns: 72px minmax(0, 1fr);
   grid-template-rows: auto 1fr;

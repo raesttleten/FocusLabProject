@@ -3,7 +3,7 @@
   grid-template-columns: 72px minmax(0, 1fr);
   grid-template-rows: auto 1fr;
   column-gap: 28px;
-  min-height: 100vh;
+  min-height: calc(100 * var(--vh));
   padding: 24px 24px 24px 24px;
   background: var(--color-bg);
 }
@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: calc(100vh - 48px);
+  height: calc(calc(100 * var(--vh)) - 48px);
   min-height: 420px;
   padding: 12px 0 24px;
   background: var(--color-surface);
@@ -254,6 +254,6 @@
 
   .student-nav {
     top: 16px;
-    height: calc(100vh - 32px);
+    height: calc(calc(100 * var(--vh)) - 32px);
   }
 }

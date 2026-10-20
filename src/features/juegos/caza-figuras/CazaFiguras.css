@@ -10,7 +10,7 @@
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
-  padding: clamp(32px, 7vh, 90px) 24px 32px;
+  padding: clamp(32px, calc(7 * var(--vh)), 90px) 24px 32px;
 }
 
 .caf-juego > * {
@@ -28,7 +28,7 @@
 .caf-tablero {
   display: grid;
   gap: 16px;
-  margin-top: clamp(20px, 4vh, 39px);
+  margin-top: clamp(20px, calc(4 * var(--vh)), 39px);
 }
 
 .caf-celda {
@@ -72,7 +72,7 @@
 }
 
 .caf-contador {
-  margin: clamp(18px, 3.5vh, 34px) 0 0;
+  margin: clamp(18px, calc(3.5 * var(--vh)), 34px) 0 0;
   font-size: 17px;
   font-weight: 500;
   color: var(--color-text-muted);
@@ -80,7 +80,7 @@
 
 .caf-ver {
   width: 220px;
-  margin-top: clamp(24px, 6vh, 88px);
+  margin-top: clamp(24px, calc(6 * var(--vh)), 88px);
 }
 
 @media (max-width: 900px) {
