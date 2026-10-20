@@ -5,6 +5,7 @@ import { CUENTO_IDS, getCuento, puntosPorCuento } from '../contenido/cuentos.js'
 import EstudianteLayout from '../estudiante/EstudianteLayout.jsx';
 import { numeroDeCuento } from '../estudiante/vistaInicio.js';
 import { juegosRecienDesbloqueados } from '../juegos/catalogo.js';
+import MiniaturaJuego from '../juegos/MiniaturaJuego.jsx';
 import Mascota from '../mascota/Mascota.jsx';
 import { estadoMascota, PANTALLA } from '../mascota/estado.js';
 import { ESTADO_DIA } from '../progreso/diaActual.js';
@@ -46,7 +47,7 @@ function Logrado({ cuento, progreso }) {
 
         {juego && (
           <div className="logrado-juego">
-            <span className="logrado-juego__icono" aria-hidden="true" />
+            <MiniaturaJuego id={juego.id} ancho={136} />
             <div className="logrado-juego__info">
               <p className="logrado-juego__etiqueta">DESBLOQUEASTE UN JUEGO</p>
               <p className="logrado-juego__nombre">{juego.nombre}</p>

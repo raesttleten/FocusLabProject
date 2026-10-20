@@ -45,14 +45,6 @@
   text-align: left;
 }
 
-.logrado-juego__icono {
-  flex: none;
-  width: 80px;
-  height: 80px;
-  border-radius: 18px;
-  background: var(--color-primary-soft);
-}
-
 .logrado-juego__info {
   flex: 1;
   min-width: 0;

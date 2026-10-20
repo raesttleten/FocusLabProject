@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ROUTES, routeTo } from '../../app/routes.js';
 import candado from '../../assets/estudiante/candado.svg';
 import { PORTADAS } from '../contenido/portadas.js';
-import VistaPrevia from '../juegos/VistaPrevia.jsx';
+import MiniaturaJuego from '../juegos/MiniaturaJuego.jsx';
 import Mascota from '../mascota/Mascota.jsx';
 import PersonalizarMascota from '../mascota/PersonalizarMascota.jsx';
 import { estadoMascota, PANTALLA } from '../mascota/estado.js';
@@ -60,9 +60,7 @@ function DiaSemana({ item }) {
 function FilaJuego({ juego }) {
   return (
     <div className={`juego-fila${juego.abierto ? '' : ' juego-fila--bloqueado'}`}>
-      <span className="juego-fila__icono" aria-hidden="true">
-        <VistaPrevia id={juego.id} abierto={juego.abierto} />
-      </span>
+      <MiniaturaJuego id={juego.id} abierto={juego.abierto} />
       <div className="juego-fila__info">
         <p className="juego-fila__nombre">{juego.nombre}</p>
         <p className="juego-fila__detalle">Se desbloquea con {juego.umbral} puntos</p>
