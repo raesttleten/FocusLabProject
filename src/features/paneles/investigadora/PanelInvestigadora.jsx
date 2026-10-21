@@ -6,7 +6,7 @@ import { getJuego } from '../../juegos/catalogo.js';
 import { metricasComunes } from '../../juegos/metricasComunes.js';
 import { useAhora } from '../../progreso/useAhora.js';
 import PanelLayout from '../PanelLayout.jsx';
-import { Cajita, Dato, EstadoCarga, Tarjeta, Ventana } from '../componentes.jsx';
+import { Cajita, Chip, Dato, EstadoCarga, Tarjeta, Ventana } from '../componentes.jsx';
 import { decimal, milisegundos, porcentaje, tiempo } from '../formato.js';
 import {
   COMPONENTE_CORTO,
@@ -202,6 +202,7 @@ function DetalleEstudiante({ estudiante, periodo, onCerrar }) {
             <thead>
               <tr>
                 <th scope="col">Juego</th>
+                <th scope="col">Intento</th>
                 <th scope="col">Día</th>
                 <th scope="col">Duración</th>
                 <th scope="col">Aciertos</th>
@@ -214,14 +215,15 @@ function DetalleEstudiante({ estudiante, periodo, onCerrar }) {
               {juegos.map((j, i) => {
                 const m = metricasComunes(j);
                 return (
-                  <tr key={i}>
+                  <tr key={i} className={j.intento === 1 ? 'panel-fila--primer-intento' : ''}>
                     <td>{getJuego(j.juego)?.nombre ?? j.juego}</td>
+                    <td>{j.intento === 1 ? <Chip estado="primer-intento">Primer intento</Chip> : `${j.intento}.º`}</td>
                     <td>{diaDeEstudio(estudiante.dias, j.fechaInicio) ?? ''}</td>
                     <td className="panel-num">{tiempo(j.duracion)}</td>
-                    <td className="panel-num"><Dato valor={m.aciertos} /></td>
-                    <td className="panel-num"><Dato valor={m.errores} /></td>
-                    <td className="panel-num"><Dato valor={m.omisiones} /></td>
-                    <td className="panel-num"><Dato valor={milisegundos(m.tiempoReaccionMs)} /></td>
+                    <td className="panel-num"><Dato valor={m.aciertos} vacio="No aplica" /></td>
+                    <td className="panel-num"><Dato valor={m.errores} vacio="No aplica" /></td>
+                    <td className="panel-num"><Dato valor={m.omisiones} vacio="No aplica" /></td>
+                    <td className="panel-num"><Dato valor={milisegundos(m.tiempoReaccionMs)} vacio="No aplica" /></td>
                   </tr>
                 );
               })}
@@ -301,7 +303,7 @@ export default function PanelInvestigadora() {
                     <th colSpan={2} />
                     <th colSpan={3} scope="colgroup">Aciertos al primer intento</th>
                     <th colSpan={4} />
-                    <th colSpan={5} scope="colgroup">Juegos (promedio por partida)</th>
+                    <th colSpan={5} scope="colgroup">Juegos (primer intento de cada juego)</th>
                   </tr>
                   <tr>
                     <th scope="col">Estudiante</th>

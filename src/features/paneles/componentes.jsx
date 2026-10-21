@@ -15,8 +15,8 @@ export function Tarjeta({ etiqueta, valor, detalle, punto }) {
   );
 }
 
-export function Dato({ valor, clase = '' }) {
-  if (valor == null) return <span className="panel-sin-dato">Sin datos</span>;
+export function Dato({ valor, clase = '', vacio = 'Sin datos' }) {
+  if (valor == null) return <span className="panel-sin-dato">{vacio}</span>;
   return <span className={clase}>{valor}</span>;
 }
 

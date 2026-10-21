@@ -5,8 +5,8 @@ import { getJuego } from '../../juegos/catalogo.js';
 import { useAhora } from '../../progreso/useAhora.js';
 import PanelLayout from '../PanelLayout.jsx';
 import { Cajita, Chip, Dato, EstadoCarga, FiltroDias, Tarjeta, Ventana } from '../componentes.jsx';
-import { fechaDeHoy, momento, porcentaje, tiempo } from '../formato.js';
-import { detalleDocente, filaDocente, nombrePeriodo, resumenDocente, TODO } from '../indicadores.js';
+import { fechaDeHoy, milisegundos, momento, porcentaje, tiempo } from '../formato.js';
+import { detalleDocente, filaDocente, nombrePeriodo, primerIntentoPorJuego, resumenDocente, TODO } from '../indicadores.js';
 import { usePanelDatos } from '../usePanelDatos.js';
 
 const intentos = (n) => (n === 1 ? '1 intento' : `${n} intentos`);
@@ -39,6 +39,7 @@ const textoPeriodo = (periodo) => (periodo === TODO ? 'todo el piloto' : nombreP
 function DetalleEstudiante({ estudiante, ahora, onCerrar }) {
   const fila = filaDocente(estudiante, TODO, ahora);
   const dias = detalleDocente(estudiante);
+  const primeros = primerIntentoPorJuego(estudiante);
   const partidas = estudiante.juegos.length;
 
   return (
@@ -107,6 +108,45 @@ function DetalleEstudiante({ estudiante, ahora, onCerrar }) {
           )}
         </section>
       ))}
+
+      <section className="panel-dia">
+        <h3 className="panel-dia__titulo">
+          Juegos <Chip estado="primer-intento">Primer intento</Chip>
+        </h3>
+        {primeros.length ? (
+          <>
+            <p className="panel-dia__vacio panel-dia__explicacion">Resultado de la primera vez que jugó cada juego. Las veces siguientes no cambian estos números.</p>
+            <table className="panel-tabla panel-tabla--compacta">
+              <thead>
+                <tr>
+                  <th scope="col">Juego</th>
+                  <th scope="col">Día</th>
+                  <th scope="col">Aciertos</th>
+                  <th scope="col">Errores</th>
+                  <th scope="col">Omisiones</th>
+                  <th scope="col">Tiempo de reacción</th>
+                  <th scope="col">Veces jugado</th>
+                </tr>
+              </thead>
+              <tbody>
+                {primeros.map((j) => (
+                  <tr key={j.juego} className="panel-fila--primer-intento">
+                    <td className="panel-nowrap">{getJuego(j.juego)?.nombre ?? j.juego}</td>
+                    <td>{j.dia ?? ''}</td>
+                    <td className="panel-num"><Dato valor={j.aciertos} vacio="No aplica" /></td>
+                    <td className="panel-num"><Dato valor={j.errores} vacio="No aplica" /></td>
+                    <td className="panel-num"><Dato valor={j.omisiones} vacio="No aplica" /></td>
+                    <td className="panel-num"><Dato valor={milisegundos(j.tiempoReaccionMs)} vacio="No aplica" /></td>
+                    <td className="panel-num">{j.partidas}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        ) : (
+          <p className="panel-dia__vacio">Todavía no ha jugado.</p>
+        )}
+      </section>
     </Ventana>
   );
 }

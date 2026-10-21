@@ -82,7 +82,7 @@ export default function InicioPage() {
 
   if (progreso.cargando || progreso.error) {
     return (
-      <EstudianteLayout titulo="¡Hola, amigo!">
+      <EstudianteLayout titulo="¡Hola!">
         <p className="inicio-cargando" role="status">
           {progreso.error ? 'No pudimos cargar tu progreso. Vuelve a intentarlo.' : 'Cargando…'}
         </p>
@@ -98,7 +98,7 @@ export default function InicioPage() {
   });
 
   return (
-    <EstudianteLayout titulo="¡Hola, amigo!" subtitulo={`Día ${vista.dia} de 3 · ${vista.nombreDia}`}>
+    <EstudianteLayout titulo="¡Hola!" subtitulo={`Día ${vista.dia} de 3 · ${vista.nombreDia}`}>
       <div className="inicio" data-estado={vista.estado}>
         <section className="student-card inicio-cuentos" aria-labelledby="inicio-titulo">
           <span className="student-chip">CUENTOS DE HOY · DÍA {vista.dia}</span>

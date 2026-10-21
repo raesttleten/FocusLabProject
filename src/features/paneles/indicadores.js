@@ -45,13 +45,30 @@ export function diaDeEstudio(dias, fecha) {
   return null;
 }
 
+const tiempoDe = (valor) => aFecha(valor)?.getTime() ?? 0;
+
+export function numerarIntentos(juegos) {
+  const vistos = new Map();
+  return [...juegos]
+    .sort((a, b) => tiempoDe(a.fechaInicio) - tiempoDe(b.fechaInicio))
+    .map((partida) => {
+      const intento = (vistos.get(partida.juego) ?? 0) + 1;
+      vistos.set(partida.juego, intento);
+      return { ...partida, intento };
+    });
+}
+
+export function primerosIntentos(juegos) {
+  return numerarIntentos(juegos).filter((partida) => partida.intento === 1);
+}
+
 export function filtrarPeriodo(estudiante, periodo) {
   const delDia = (fecha) => enPeriodo(periodo, diaDeEstudio(estudiante.dias, fecha));
   return {
     ...estudiante,
     respuestas: estudiante.respuestas.filter((r) => enPeriodo(periodo, r.dia)),
     lecturas: estudiante.lecturas.filter((l) => enPeriodo(periodo, l.dia)),
-    juegos: estudiante.juegos.filter((j) => delDia(j.fechaInicio)),
+    juegos: numerarIntentos(estudiante.juegos).filter((j) => delDia(j.fechaInicio)),
     actividad: estudiante.actividad.filter((a) => delDia(a.inicio)),
     diasDelPeriodo: periodo === TODO ? DIAS : [periodo],
   };
@@ -226,6 +243,18 @@ export function detalleDocente(estudiante) {
   });
 }
 
+export function primerIntentoPorJuego(estudiante) {
+  const partidas = numerarIntentos(estudiante.juegos);
+  return primerosIntentos(estudiante.juegos).map((primera) => ({
+    juego: primera.juego,
+    dia: diaDeEstudio(estudiante.dias, primera.fechaInicio),
+    fecha: aFecha(primera.fechaInicio),
+    duracion: primera.duracion,
+    partidas: partidas.filter((p) => p.juego === primera.juego).length,
+    ...metricasComunes(primera),
+  }));
+}
+
 function juegosPorNombre(juegos) {
   const conteo = new Map();
   for (const partida of juegos) conteo.set(partida.juego, (conteo.get(partida.juego) ?? 0) + 1);
@@ -245,7 +274,7 @@ export function filaInvestigadora(estudiante, periodo) {
     segundosLectura: segundosDeLectura(filtrado.lecturas),
     ...tiempoActividad(filtrado.actividad),
     partidas: filtrado.juegos.length,
-    juegos: promedioMetricasJuegos(filtrado.juegos),
+    juegos: promedioMetricasJuegos(filtrado.juegos.filter((j) => j.intento === 1)),
   };
 }
 

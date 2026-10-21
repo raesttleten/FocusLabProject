@@ -1,7 +1,7 @@
 import { getDia } from '../contenido/cuentos.js';
 import { CLAVES_METRICAS, metricasComunes } from '../juegos/metricasComunes.js';
 import { aFecha, ZONA_HORARIA } from '../progreso/fechas.js';
-import { diaDeEstudio, esRespuestaDeOpinion, fueRespondida, preguntaDe } from './indicadores.js';
+import { diaDeEstudio, esRespuestaDeOpinion, fueRespondida, numerarIntentos, preguntaDe } from './indicadores.js';
 
 const formatoFechaHora = new Intl.DateTimeFormat('en-CA', {
   timeZone: ZONA_HORARIA,
@@ -79,19 +79,20 @@ export function filasLecturas(estudiantes) {
 }
 
 export const COLUMNAS_JUEGOS = [
-  'codigo', 'juego', 'dia', 'fecha_inicio', 'duracion_segundos',
+  'codigo', 'juego', 'intento', 'primer_intento', 'dia', 'fecha_inicio', 'duracion_segundos',
   'aciertos', 'errores', 'omisiones', 'tiempo_reaccion_ms', 'metricas_json',
 ];
 
 export function filasJuegos(estudiantes) {
   return estudiantes.flatMap((e) =>
-    [...e.juegos]
-      .sort((a, b) => (aFecha(a.fechaInicio)?.getTime() ?? 0) - (aFecha(b.fechaInicio)?.getTime() ?? 0))
+    numerarIntentos(e.juegos)
       .map((j) => {
         const comunes = metricasComunes(j);
         return {
           codigo: e.codigo,
           juego: j.juego,
+          intento: j.intento,
+          primer_intento: j.intento === 1,
           dia: diaDeEstudio(e.dias, j.fechaInicio),
           fecha_inicio: fechaHoraCsv(j.fechaInicio),
           duracion_segundos: j.duracion,

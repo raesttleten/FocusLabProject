@@ -427,6 +427,20 @@
   color: var(--panel-exito-texto);
 }
 
+.panel-chip--primer-intento {
+  background: #fdf3dc;
+  color: #8a6212;
+}
+
+.panel-fila--primer-intento td {
+  background: #fffaf0;
+}
+
+.panel-dia__titulo .panel-chip {
+  margin-left: 8px;
+  vertical-align: 2px;
+}
+
 .panel-chip--sin-empezar {
   background: var(--panel-suave);
   color: var(--panel-texto-medio);
@@ -807,6 +821,10 @@
   margin: 10px 0 0;
   font-size: 14px;
   color: #6b7078;
+}
+
+.panel-dia__explicacion {
+  margin-bottom: 12px;
 }
 
 .panel-dia__juegos strong {

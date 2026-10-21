@@ -9,6 +9,8 @@ import {
   diaEnQueVa,
   filaDocente,
   filaInvestigadora,
+  numerarIntentos,
+  primerIntentoPorJuego,
   promedioLecturaPorCuento,
   resumenDocente,
   resumenInvestigadora,
@@ -190,5 +192,45 @@ describe('formato de tiempo en los paneles', () => {
     expect(tiempo(120)).toBe('2 min');
     expect(tiempo(3900)).toBe('1 h 5 min');
     expect(tiempo(null)).toBe(null);
+  });
+});
+
+describe('primer intento de cada juego', () => {
+  const conRepeticion = () => {
+    const e = estudianteA();
+    e.juegos.push({ juego: 'a-todo-foco', fechaInicio: h('2026-10-19T09:50:00'), duracion: 60, metricas: { xTocadas: 9, toquesOtraLetra: 0, xEscapadas: 0, tiempoReaccionPromedioMs: 400 } });
+    e.juegos.reverse();
+    return e;
+  };
+
+  it('numera las partidas de cada juego por orden de fecha', () => {
+    const intentos = numerarIntentos(conRepeticion().juegos).map((j) => `${j.juego} ${j.intento}`);
+    expect(intentos).toEqual(['a-todo-foco 1', 'a-todo-foco 2', 'repite-el-patron 1']);
+  });
+
+  it('las métricas de juegos de la investigadora usan solo el primer intento', () => {
+    const fila = filaInvestigadora(conRepeticion(), TODO);
+    expect(fila.partidas).toBe(3);
+    expect(fila.juegos).toEqual({ aciertos: 6, errores: 2, omisiones: 1, tiempoReaccionMs: 600 });
+  });
+
+  it('el primer intento cuenta aunque se mire un día en el que solo hubo repeticiones', () => {
+    const e = conRepeticion();
+    e.juegos.push({ juego: 'a-todo-foco', fechaInicio: h('2026-10-20T11:00:00'), duracion: 50, metricas: { xTocadas: 9, toquesOtraLetra: 0, xEscapadas: 0, tiempoReaccionPromedioMs: 300 } });
+    const dia2 = filaInvestigadora(e, 2);
+    expect(dia2.partidas).toBe(2);
+    expect(dia2.juegos.aciertos).toBe(4);
+  });
+
+  it('el docente ve el primer intento de cada juego con el total de partidas', () => {
+    expect(primerIntentoPorJuego(conRepeticion())).toEqual([
+      expect.objectContaining({ juego: 'a-todo-foco', dia: 1, partidas: 2, aciertos: 8, errores: 2, omisiones: 1, tiempoReaccionMs: 600 }),
+      expect.objectContaining({ juego: 'repite-el-patron', dia: 2, partidas: 1, aciertos: 4, errores: 2 }),
+    ]);
+  });
+
+  it('el CSV de juegos marca el intento y el primer intento', () => {
+    const filas = filasJuegos([conRepeticion()]).map((f) => [f.juego, f.intento, f.primer_intento]);
+    expect(filas).toEqual([['a-todo-foco', 1, true], ['a-todo-foco', 2, false], ['repite-el-patron', 1, true]]);
   });
 });
