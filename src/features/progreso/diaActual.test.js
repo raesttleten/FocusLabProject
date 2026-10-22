@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calcularDiaActual, ESTADO_DIA } from './diaActual.js';
+import { calcularDiaActual, diaDelCalendario, ESTADO_DIA } from './diaActual.js';
 
 const colombia = (fechaHora) => new Date(`${fechaHora}-05:00`);
 const terminado = (fechaHora) => ({ estado: 'terminado', fechaFin: colombia(fechaHora) });
@@ -13,12 +13,47 @@ describe('calcularDiaActual', () => {
     expect(calcularDiaActual(undefined, colombia('2026-10-20T08:00:00')).dia).toBe(1);
   });
 
-  it('sigue en el mismo día si no lo terminó, aunque pasen varios días', () => {
+  it('sigue en el mismo día si no lo terminó y el calendario no ha avanzado', () => {
     const dias = { 1: { estado: 'disponible', fechaInicio: colombia('2026-10-20T08:00:00') } };
-    expect(calcularDiaActual(dias, colombia('2026-10-25T08:00:00'))).toEqual({
+    expect(calcularDiaActual(dias, colombia('2026-10-20T15:00:00'))).toEqual({
       dia: 1,
       estado: ESTADO_DIA.inProgress,
     });
+  });
+
+  it('si faltó un día, salta al día del calendario del piloto', () => {
+    const dias = { 1: terminado('2026-10-20T10:00:00') };
+    expect(calcularDiaActual(dias, colombia('2026-10-22T08:00:00'))).toEqual({
+      dia: 3,
+      estado: ESTADO_DIA.inProgress,
+    });
+    expect(calcularDiaActual({}, colombia('2026-10-21T08:00:00'))).toEqual({
+      dia: 2,
+      estado: ESTADO_DIA.inProgress,
+    });
+    const aMedias = { 1: { estado: 'disponible', fechaInicio: colombia('2026-10-20T08:00:00') } };
+    expect(calcularDiaActual(aMedias, colombia('2026-10-25T08:00:00')).dia).toBe(3);
+  });
+
+  it('si hizo hoy un día atrasado, pasa al día del calendario sin esperar a mañana', () => {
+    const dias = { 1: terminado('2026-10-20T10:00:00'), 2: terminado('2026-10-22T09:00:00') };
+    expect(calcularDiaActual(dias, colombia('2026-10-22T09:30:00'))).toEqual({
+      dia: 3,
+      estado: ESTADO_DIA.inProgress,
+    });
+  });
+
+  it('antes de la primera fecha del piloto está en el día 1', () => {
+    expect(diaDelCalendario('2026-10-01')).toBe(1);
+    expect(diaDelCalendario('2026-10-21')).toBe(2);
+    expect(diaDelCalendario('2026-12-01')).toBe(3);
+  });
+
+  it('las fechas del piloto se pueden cambiar', () => {
+    const fechas = ['2026-11-03', '2026-11-05', '2026-11-10'];
+    const dias = { 1: terminado('2026-11-03T10:00:00') };
+    expect(calcularDiaActual(dias, colombia('2026-11-04T08:00:00'), fechas).dia).toBe(2);
+    expect(calcularDiaActual(dias, colombia('2026-11-10T08:00:00'), fechas).dia).toBe(3);
   });
 
   it('muestra "terminado por hoy" el mismo día en que terminó', () => {
@@ -81,7 +116,7 @@ describe('calcularDiaActual', () => {
 
   it('un día sin fechaFin no cuenta como terminado', () => {
     const dias = { 1: { estado: 'terminado' } };
-    expect(calcularDiaActual(dias, colombia('2026-10-21T10:00:00'))).toEqual({
+    expect(calcularDiaActual(dias, colombia('2026-10-20T10:00:00'))).toEqual({
       dia: 1,
       estado: ESTADO_DIA.inProgress,
     });
