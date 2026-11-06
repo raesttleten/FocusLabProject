@@ -38,17 +38,6 @@ La página está hecha con React y Vite. Firebase se encarga del inicio de sesi�
 
 La página está publicada en https://focuslap-e8e7a.web.app
 
-## Para correrlo en tu computador
-
-Necesitas Node.js instalado. Copia `.env.example` como `.env.local` y pon ahí los datos de tu proyecto de Firebase. Después:
-
-```
-npm install
-npm run dev
-```
-
-Para las pruebas se usa `npm test` y para publicar `npm run publicar`.
-
 ---
 
 Espero que te guste mi página tanto como a mí me gustó hacerla. Ojalá algún día ideas como esta ayuden a que los niños aprendan de una forma más bonita y que la tecnología sea una aliada en su educación y no una distracción :)
