@@ -52,8 +52,8 @@ export function debeMostrarTransicion({ respuestas, cuentoId, registro, ahora })
   return puntosDeHoyAntes === 0;
 }
 
-export function resumirProgreso(dias, respuestas, ahora) {
-  const diaActual = calcularDiaActual(dias, ahora);
+export function resumirProgreso(dias, respuestas, ahora, fechas) {
+  const diaActual = calcularDiaActual(dias, ahora, fechas);
   const puntosTotales = calcularPuntos(respuestas);
   return {
     diaActual,

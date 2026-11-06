@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { calcularDiaActual, diaDelCalendario, ESTADO_DIA } from './diaActual.js';
+import { calcularDiaActual, diaDelCalendario, ESTADO_DIA, FECHAS_PILOTO, fechasPilotoDe } from './diaActual.js';
 
 const colombia = (fechaHora) => new Date(`${fechaHora}-05:00`);
 const terminado = (fechaHora) => ({ estado: 'terminado', fechaFin: colombia(fechaHora) });
@@ -54,6 +54,17 @@ describe('calcularDiaActual', () => {
     const dias = { 1: terminado('2026-11-03T10:00:00') };
     expect(calcularDiaActual(dias, colombia('2026-11-04T08:00:00'), fechas).dia).toBe(2);
     expect(calcularDiaActual(dias, colombia('2026-11-10T08:00:00'), fechas).dia).toBe(3);
+  });
+
+  it('E16 tiene su propio calendario y los demás usan el del piloto', () => {
+    expect(fechasPilotoDe('E01')).toBe(FECHAS_PILOTO);
+    expect(fechasPilotoDe(undefined)).toBe(FECHAS_PILOTO);
+    const fechas = fechasPilotoDe('E16');
+    expect(calcularDiaActual({}, colombia('2026-11-05T08:00:00'), fechas)).toEqual({
+      dia: 1,
+      estado: ESTADO_DIA.inProgress,
+    });
+    expect(calcularDiaActual({}, colombia('2026-11-05T08:00:00')).dia).toBe(3);
   });
 
   it('muestra "terminado por hoy" el mismo día en que terminó', () => {

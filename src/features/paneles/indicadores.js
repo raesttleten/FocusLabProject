@@ -1,6 +1,6 @@
 import { CUENTO_IDS, DIAS, esOpinion, getDia, getPreguntas } from '../contenido/cuentos.js';
 import { CLAVES_METRICAS, metricasComunes } from '../juegos/metricasComunes.js';
-import { calcularDiaActual, ESTADO_DIA } from '../progreso/diaActual.js';
+import { calcularDiaActual, ESTADO_DIA, fechasPilotoDe } from '../progreso/diaActual.js';
 import { aFecha, fechaColombia } from '../progreso/fechas.js';
 import { ESTADO_CUENTO, ESTADO_REGISTRO } from '../progreso/modelo.js';
 import { calcularPuntos } from '../progreso/puntos.js';
@@ -167,7 +167,7 @@ export function activoEnFecha(estudiante, fecha) {
 
 export function diaEnQueVa(estudiante, ahora) {
   if (!DIAS.some((dia) => estudiante.dias?.[dia])) return { dia: null, texto: 'Sin empezar', estado: 'sin-empezar' };
-  const { dia, estado } = calcularDiaActual(estudiante.dias, ahora);
+  const { dia, estado } = calcularDiaActual(estudiante.dias, ahora, fechasPilotoDe(estudiante.codigo));
   if (estado === ESTADO_DIA.allDone || diasTerminados(estudiante) === DIAS.length) {
     return { dia: DIAS.length, texto: 'Terminó', estado: 'termino' };
   }

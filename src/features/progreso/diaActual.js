@@ -9,6 +9,14 @@ export const ESTADO_DIA = {
 
 export const FECHAS_PILOTO = ['2026-10-20', '2026-10-21', '2026-10-22'];
 
+export const FECHAS_POR_CODIGO = {
+  E16: ['2026-11-05', '2026-11-06', '2026-11-07'],
+};
+
+export function fechasPilotoDe(codigo) {
+  return FECHAS_POR_CODIGO[codigo] ?? FECHAS_PILOTO;
+}
+
 function estaTerminado(registro) {
   return registro?.estado === 'terminado' && registro.fechaFin != null;
 }

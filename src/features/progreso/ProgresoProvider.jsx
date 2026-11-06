@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { useAuth } from '../../auth/AuthProvider.jsx';
+import { fechasPilotoDe } from './diaActual.js';
 import { resumirProgreso } from './modelo.js';
 import { tomarLecturasPendientes } from './pendientes.js';
 import { escucharProgreso, registrarLectura } from './repositorio.js';
@@ -10,6 +11,7 @@ const ProgresoContext = createContext(null);
 export function ProgresoProvider({ children }) {
   const { profile } = useAuth();
   const uid = profile?.uid;
+  const codigo = profile?.codigo;
   const ahora = useAhora();
   const [dias, setDias] = useState(null);
   const [respuestas, setRespuestas] = useState(null);
@@ -26,8 +28,8 @@ export function ProgresoProvider({ children }) {
   const value = useMemo(() => {
     if (error) return { cargando: false, error };
     if (!dias || !respuestas) return { cargando: true };
-    return { cargando: false, uid, ahora, dias, respuestas, ...resumirProgreso(dias, respuestas, ahora) };
-  }, [error, dias, respuestas, uid, ahora]);
+    return { cargando: false, uid, ahora, dias, respuestas, ...resumirProgreso(dias, respuestas, ahora, fechasPilotoDe(codigo)) };
+  }, [error, dias, respuestas, uid, codigo, ahora]);
 
   return <ProgresoContext.Provider value={value}>{children}</ProgresoContext.Provider>;
 }
