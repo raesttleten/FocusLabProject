@@ -7,7 +7,7 @@
 **Lee, juega y entrena tu atención.**
 Una página web para que niños de 10 a 13 años practiquen la concentración mientras leen.
 
-### [▶ Abrir FocusLap](https://focuslap-e8e7a.web.app)
+### [Abrir FocusLap](https://focuslap-e8e7a.web.app)
 
 https://focuslap-e8e7a.web.app
 
@@ -27,15 +27,15 @@ El piloto se realiza con un salón de un colegio de Bogotá durante **3 días**.
 
 ## Características
 
-- 📖 **Lectura guiada:** dos cuentos con preguntas que cambian cada día según el componente de atención que se trabaja.
-- ⭐ **Puntos que motivan:** cada respuesta correcta suma 10 puntos, hasta 160 en total. Los puntos nunca se pierden.
-- 🎮 **Seis juegos de atención** que se desbloquean con los puntos y se pueden jugar las veces que se quiera.
-- 🐛 **Una mascota propia:** una luciérnaga que tiene frío al comenzar el día y recupera el calor cuando el niño termina su primer cuento.
-- 🎨 **Personalización:** cada niño elige el color de su página y el buzo de su mascota.
-- 👩‍🏫 **Panel para la docente** con el avance de cada estudiante.
-- 📊 **Tablero para la investigadora** con gráficas por componente de atención y descarga de datos en CSV.
-- 📶 **Funciona sin internet:** lo que el niño hace se guarda en el equipo y se sincroniza solo cuando vuelve la conexión.
-- 🔒 **Anónimo:** cada niño entra con un código (E01 a E28). Nunca se guardan ni se muestran nombres reales.
+- **Lectura guiada:** dos cuentos con preguntas que cambian cada día según el componente de atención que se trabaja.
+- **Puntos que motivan:** cada respuesta correcta suma 10 puntos, hasta 160 en total. Los puntos nunca se pierden.
+- **Seis juegos de atención** que se desbloquean con los puntos y se pueden jugar las veces que se quiera.
+- **Una mascota propia:** una luciérnaga que tiene frío al comenzar el día y recupera el calor cuando el niño termina su primer cuento.
+- **Personalización:** cada niño elige el color de su página y el buzo de su mascota.
+- **Panel para la docente** con el avance de cada estudiante.
+- **Tablero para la investigadora** con gráficas por componente de atención y descarga de datos en CSV.
+- **Funciona sin internet:** lo que el niño hace se guarda en el equipo y se sincroniza solo cuando vuelve la conexión.
+- **Anónimo:** cada niño entra con un código (E01 a E28). Nunca se guardan ni se muestran nombres reales.
 
 ## Cómo funciona
 
@@ -75,7 +75,7 @@ Mientras se juega no aparece la mascota ni nada que distraiga.
 
 ## La mascota
 
-Una luciérnaga que diseñé para FocusLap. Cada día empieza con frío y se calienta cuando el niño termina su primer cuento. Se le puede poner nombre y cambiar el buzo entre lila, rosa, negro y verde.
+Una luciérnaga que da la imagen de un foco pero para niños que se diseñó para FocusLap, llamada: Lumi. Cada día empieza con frío y se calienta cuando el niño termina su primer cuento. Se le puede poner nombre y cambiar el buzo entre lila, rosa, negro y verde.
 
 <table>
   <tr>
